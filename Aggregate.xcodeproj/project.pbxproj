@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59A8633F00FE70AB8385533C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D4E6D70E3C90ACD939C53 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		DE0EC3DB1BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0EC3D61BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m */; settings = {ASSET_TAGS = (); }; };
+		DE0EC3DC1BC7678700F517AF /* JVFloatingDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0EC3D81BC7678700F517AF /* JVFloatingDrawerView.m */; settings = {ASSET_TAGS = (); }; };
+		DE0EC3DD1BC7678700F517AF /* JVFloatingDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0EC3DA1BC7678700F517AF /* JVFloatingDrawerViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DE0EC3DF1BC7699F00F517AF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0EC3DE1BC7699F00F517AF /* HomeViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		DE0EC3E11BC78C6200F517AF /* MainDrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0EC3E01BC78C6200F517AF /* MainDrawViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DE15732A1BC6409F000A88AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1573291BC6409F000A88AA /* AppDelegate.swift */; };
 		DE15732C1BC6409F000A88AA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15732B1BC6409F000A88AA /* ViewController.swift */; };
 		DE15732F1BC6409F000A88AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE15732D1BC6409F000A88AA /* Main.storyboard */; };
@@ -15,6 +21,15 @@
 		DE1573371BC6409F000A88AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1573351BC6409F000A88AA /* LaunchScreen.storyboard */; };
 		DE1573421BC6409F000A88AA /* AggregateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1573411BC6409F000A88AA /* AggregateTests.swift */; };
 		DE15734D1BC6409F000A88AA /* AggregateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE15734C1BC6409F000A88AA /* AggregateUITests.swift */; };
+		DE1573601BC66AB5000A88AA /* thirdParty.m in Sources */ = {isa = PBXBuildFile; fileRef = DE15735F1BC66AB5000A88AA /* thirdParty.m */; settings = {ASSET_TAGS = (); }; };
+		DE1573751BC66B1A000A88AA /* SMMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1573691BC66B1A000A88AA /* SMMasterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DE1573761BC66B1A000A88AA /* SMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DE15736C1BC66B1A000A88AA /* SMTabBar.m */; settings = {ASSET_TAGS = (); }; };
+		DE1573771BC66B1A000A88AA /* SMTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DE15736F1BC66B1A000A88AA /* SMTabBarItem.m */; settings = {ASSET_TAGS = (); }; };
+		DE1573781BC66B1A000A88AA /* SMTabBarItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1573711BC66B1A000A88AA /* SMTabBarItemCell.m */; settings = {ASSET_TAGS = (); }; };
+		DE1573791BC66B1A000A88AA /* SMTabbedSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1573731BC66B1A000A88AA /* SMTabbedSplitViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DE6B45971BCB653700E9D80E /* NodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		DE6B459B1BCB821F00E9D80E /* HamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B459A1BCB821F00E9D80E /* HamburgerButton.m */; settings = {ASSET_TAGS = (); }; };
+		DE6B45BC1BCBB54F00E9D80E /* NetDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6B45BB1BCBB54F00E9D80E /* NetDataManager.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +50,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		63C339A4FE4E777FF06D2F87 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CA0D4E6D70E3C90ACD939C53 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE0EC3D41BC7678700F517AF /* JVFloatingDrawerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerAnimation.h; sourceTree = "<group>"; };
+		DE0EC3D51BC7678700F517AF /* JVFloatingDrawerSpringAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerSpringAnimator.h; sourceTree = "<group>"; };
+		DE0EC3D61BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerSpringAnimator.m; sourceTree = "<group>"; };
+		DE0EC3D71BC7678700F517AF /* JVFloatingDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerView.h; sourceTree = "<group>"; };
+		DE0EC3D81BC7678700F517AF /* JVFloatingDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerView.m; sourceTree = "<group>"; };
+		DE0EC3D91BC7678700F517AF /* JVFloatingDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerViewController.h; sourceTree = "<group>"; };
+		DE0EC3DA1BC7678700F517AF /* JVFloatingDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatingDrawerViewController.m; sourceTree = "<group>"; };
+		DE0EC3DE1BC7699F00F517AF /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		DE0EC3E01BC78C6200F517AF /* MainDrawViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDrawViewController.swift; sourceTree = "<group>"; };
 		DE1573261BC6409F000A88AA /* Aggregate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aggregate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE1573291BC6409F000A88AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE15732B1BC6409F000A88AA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +75,23 @@
 		DE1573481BC6409F000A88AA /* AggregateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AggregateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE15734C1BC6409F000A88AA /* AggregateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregateUITests.swift; sourceTree = "<group>"; };
 		DE15734E1BC6409F000A88AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE15735E1BC66AB5000A88AA /* Aggregate-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aggregate-Bridging-Header.h"; sourceTree = "<group>"; };
+		DE15735F1BC66AB5000A88AA /* thirdParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = thirdParty.m; sourceTree = "<group>"; };
+		DE1573681BC66B1A000A88AA /* SMMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMMasterViewController.h; sourceTree = "<group>"; };
+		DE1573691BC66B1A000A88AA /* SMMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMMasterViewController.m; sourceTree = "<group>"; };
+		DE15736B1BC66B1A000A88AA /* SMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBar.h; sourceTree = "<group>"; };
+		DE15736C1BC66B1A000A88AA /* SMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBar.m; sourceTree = "<group>"; };
+		DE15736E1BC66B1A000A88AA /* SMTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBarItem.h; sourceTree = "<group>"; };
+		DE15736F1BC66B1A000A88AA /* SMTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBarItem.m; sourceTree = "<group>"; };
+		DE1573701BC66B1A000A88AA /* SMTabBarItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabBarItemCell.h; sourceTree = "<group>"; };
+		DE1573711BC66B1A000A88AA /* SMTabBarItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabBarItemCell.m; sourceTree = "<group>"; };
+		DE1573721BC66B1A000A88AA /* SMTabbedSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabbedSplitViewController.h; sourceTree = "<group>"; };
+		DE1573731BC66B1A000A88AA /* SMTabbedSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabbedSplitViewController.m; sourceTree = "<group>"; };
+		DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCollectionViewCell.swift; sourceTree = "<group>"; };
+		DE6B45991BCB821F00E9D80E /* HamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerButton.h; sourceTree = "<group>"; };
+		DE6B459A1BCB821F00E9D80E /* HamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerButton.m; sourceTree = "<group>"; };
+		DE6B45BB1BCBB54F00E9D80E /* NetDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetDataManager.swift; sourceTree = "<group>"; };
+		E6F684E9DEB86D9C9D644AF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A8633F00FE70AB8385533C /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +120,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		631DE5171FABB09635E6F9CB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E6F684E9DEB86D9C9D644AF3 /* Pods.debug.xcconfig */,
+				63C339A4FE4E777FF06D2F87 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CE8F3655E920F9E1E0690B58 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CA0D4E6D70E3C90ACD939C53 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DE0EC3D31BC7678700F517AF /* JVFloatingDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				DE0EC3D41BC7678700F517AF /* JVFloatingDrawerAnimation.h */,
+				DE0EC3D51BC7678700F517AF /* JVFloatingDrawerSpringAnimator.h */,
+				DE0EC3D61BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m */,
+				DE0EC3D71BC7678700F517AF /* JVFloatingDrawerView.h */,
+				DE0EC3D81BC7678700F517AF /* JVFloatingDrawerView.m */,
+				DE0EC3D91BC7678700F517AF /* JVFloatingDrawerViewController.h */,
+				DE0EC3DA1BC7678700F517AF /* JVFloatingDrawerViewController.m */,
+			);
+			path = JVFloatingDrawer;
+			sourceTree = "<group>";
+		};
 		DE15731D1BC6409E000A88AA = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +158,8 @@
 				DE1573401BC6409F000A88AA /* AggregateTests */,
 				DE15734B1BC6409F000A88AA /* AggregateUITests */,
 				DE1573271BC6409F000A88AA /* Products */,
+				631DE5171FABB09635E6F9CB /* Pods */,
+				CE8F3655E920F9E1E0690B58 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +176,13 @@
 		DE1573281BC6409F000A88AA /* Aggregate */ = {
 			isa = PBXGroup;
 			children = (
-				DE1573291BC6409F000A88AA /* AppDelegate.swift */,
-				DE15732B1BC6409F000A88AA /* ViewController.swift */,
-				DE15732D1BC6409F000A88AA /* Main.storyboard */,
+				DE6B45BA1BCBB17900E9D80E /* Service */,
+				DE1573611BC66AE8000A88AA /* ThirdParty */,
+				DE15735D1BC641DC000A88AA /* Views */,
+				DE15735C1BC641A4000A88AA /* Models */,
+				DE15735B1BC6416F000A88AA /* ViewControllers */,
 				DE1573331BC6409F000A88AA /* Assets.xcassets */,
-				DE1573351BC6409F000A88AA /* LaunchScreen.storyboard */,
-				DE1573381BC6409F000A88AA /* Info.plist */,
-				DE1573301BC6409F000A88AA /* Aggregate.xcdatamodeld */,
+				DE15735A1BC64118000A88AA /* SupportingFiles */,
 			);
 			path = Aggregate;
 			sourceTree = "<group>";
@@ -128,6 +205,121 @@
 			path = AggregateUITests;
 			sourceTree = "<group>";
 		};
+		DE15735A1BC64118000A88AA /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				DE1573291BC6409F000A88AA /* AppDelegate.swift */,
+				DE1573351BC6409F000A88AA /* LaunchScreen.storyboard */,
+				DE1573381BC6409F000A88AA /* Info.plist */,
+				DE15735F1BC66AB5000A88AA /* thirdParty.m */,
+				DE15735E1BC66AB5000A88AA /* Aggregate-Bridging-Header.h */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		DE15735B1BC6416F000A88AA /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				DE15732B1BC6409F000A88AA /* ViewController.swift */,
+				DE0EC3DE1BC7699F00F517AF /* HomeViewController.swift */,
+				DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */,
+				DE0EC3E01BC78C6200F517AF /* MainDrawViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		DE15735C1BC641A4000A88AA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DE1573301BC6409F000A88AA /* Aggregate.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DE15735D1BC641DC000A88AA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DE15732D1BC6409F000A88AA /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DE1573611BC66AE8000A88AA /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				DE6B45981BCB820A00E9D80E /* HamburgerButton */,
+				DE0EC3D31BC7678700F517AF /* JVFloatingDrawer */,
+				DE1573621BC66B1A000A88AA /* SMTabbedSplitViewController */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		DE1573621BC66B1A000A88AA /* SMTabbedSplitViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DE1573631BC66B1A000A88AA /* Classes */,
+				DE1573721BC66B1A000A88AA /* SMTabbedSplitViewController.h */,
+				DE1573731BC66B1A000A88AA /* SMTabbedSplitViewController.m */,
+			);
+			path = SMTabbedSplitViewController;
+			sourceTree = "<group>";
+		};
+		DE1573631BC66B1A000A88AA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DE1573671BC66B1A000A88AA /* MasterVC */,
+				DE15736A1BC66B1A000A88AA /* TabBar */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DE1573671BC66B1A000A88AA /* MasterVC */ = {
+			isa = PBXGroup;
+			children = (
+				DE1573681BC66B1A000A88AA /* SMMasterViewController.h */,
+				DE1573691BC66B1A000A88AA /* SMMasterViewController.m */,
+			);
+			path = MasterVC;
+			sourceTree = "<group>";
+		};
+		DE15736A1BC66B1A000A88AA /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				DE15736B1BC66B1A000A88AA /* SMTabBar.h */,
+				DE15736C1BC66B1A000A88AA /* SMTabBar.m */,
+				DE15736D1BC66B1A000A88AA /* TabBarItem */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		DE15736D1BC66B1A000A88AA /* TabBarItem */ = {
+			isa = PBXGroup;
+			children = (
+				DE15736E1BC66B1A000A88AA /* SMTabBarItem.h */,
+				DE15736F1BC66B1A000A88AA /* SMTabBarItem.m */,
+				DE1573701BC66B1A000A88AA /* SMTabBarItemCell.h */,
+				DE1573711BC66B1A000A88AA /* SMTabBarItemCell.m */,
+			);
+			path = TabBarItem;
+			sourceTree = "<group>";
+		};
+		DE6B45981BCB820A00E9D80E /* HamburgerButton */ = {
+			isa = PBXGroup;
+			children = (
+				DE6B45991BCB821F00E9D80E /* HamburgerButton.h */,
+				DE6B459A1BCB821F00E9D80E /* HamburgerButton.m */,
+			);
+			name = HamburgerButton;
+			sourceTree = "<group>";
+		};
+		DE6B45BA1BCBB17900E9D80E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				DE6B45BB1BCBB54F00E9D80E /* NetDataManager.swift */,
+			);
+			name = Service;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +327,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE1573511BC6409F000A88AA /* Build configuration list for PBXNativeTarget "Aggregate" */;
 			buildPhases = (
+				41ECA189CE27B9BD905B1718 /* Check Pods Manifest.lock */,
 				DE1573221BC6409F000A88AA /* Sources */,
 				DE1573231BC6409F000A88AA /* Frameworks */,
 				DE1573241BC6409F000A88AA /* Resources */,
+				8F7C399C83FCB15ACBDB233C /* Embed Pods Frameworks */,
+				77696C32C4C53B4578D56F24 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -190,6 +385,7 @@
 		DE15731E1BC6409E000A88AA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "朱勇";
 				TargetAttributes = {
@@ -253,14 +449,76 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		41ECA189CE27B9BD905B1718 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		77696C32C4C53B4578D56F24 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F7C399C83FCB15ACBDB233C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DE1573221BC6409F000A88AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE0EC3DB1BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m in Sources */,
+				DE0EC3E11BC78C6200F517AF /* MainDrawViewController.swift in Sources */,
 				DE15732C1BC6409F000A88AA /* ViewController.swift in Sources */,
+				DE0EC3DD1BC7678700F517AF /* JVFloatingDrawerViewController.m in Sources */,
 				DE15732A1BC6409F000A88AA /* AppDelegate.swift in Sources */,
+				DE6B459B1BCB821F00E9D80E /* HamburgerButton.m in Sources */,
+				DE6B45BC1BCBB54F00E9D80E /* NetDataManager.swift in Sources */,
+				DE0EC3DC1BC7678700F517AF /* JVFloatingDrawerView.m in Sources */,
+				DE1573751BC66B1A000A88AA /* SMMasterViewController.m in Sources */,
+				DE1573601BC66AB5000A88AA /* thirdParty.m in Sources */,
+				DE1573771BC66B1A000A88AA /* SMTabBarItem.m in Sources */,
+				DE1573781BC66B1A000A88AA /* SMTabBarItemCell.m in Sources */,
+				DE1573761BC66B1A000A88AA /* SMTabBar.m in Sources */,
 				DE1573321BC6409F000A88AA /* Aggregate.xcdatamodeld in Sources */,
+				DE0EC3DF1BC7699F00F517AF /* HomeViewController.swift in Sources */,
+				DE1573791BC66B1A000A88AA /* SMTabbedSplitViewController.m in Sources */,
+				DE6B45971BCB653700E9D80E /* NodeCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,23 +656,30 @@
 		};
 		DE1573521BC6409F000A88AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6F684E9DEB86D9C9D644AF3 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Aggregate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZY.Aggregate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Aggregate/Aggregate-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		DE1573531BC6409F000A88AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63C339A4FE4E777FF06D2F87 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Aggregate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZY.Aggregate;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Aggregate/Aggregate-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -485,6 +750,7 @@
 				DE1573531BC6409F000A88AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DE1573541BC6409F000A88AA /* Build configuration list for PBXNativeTarget "AggregateTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +759,7 @@
 				DE1573561BC6409F000A88AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DE1573571BC6409F000A88AA /* Build configuration list for PBXNativeTarget "AggregateUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +768,7 @@
 				DE1573591BC6409F000A88AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
