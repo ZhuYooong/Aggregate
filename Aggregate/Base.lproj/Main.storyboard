@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--用户菜单导航栏-->
         <scene sceneID="885-5n-vhE">
             <objects>
-                <navigationController storyboardIdentifier="MenuID" navigationBarHidden="YES" id="1m5-tO-lUs" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MenuID" title="用户菜单导航栏" navigationBarHidden="YES" id="1m5-tO-lUs" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NXX-r8-jdR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="-345" y="-253"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--主页导航栏-->
         <scene sceneID="QZh-oi-Y3Q">
             <objects>
-                <navigationController storyboardIdentifier="homeID" id="G50-QM-Ohn" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="homeID" title="主页导航栏" id="G50-QM-Ohn" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cvj-nE-tJx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -125,12 +125,66 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1M-gC-58K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360" y="423"/>
+            <point key="canvasLocation" x="386" y="423"/>
         </scene>
-        <!--View Controller-->
+        <!--所有节点-->
+        <scene sceneID="3WW-bz-oil">
+            <objects>
+                <collectionViewController title="所有节点" id="fmM-JX-jLH" customClass="AllNodeCollectionViewController" customModule="Aggregate" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="G7W-M5-AER">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0Pa-m2-bBf">
+                            <size key="itemSize" width="100" height="40"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="tGS-Vc-r0X">
+                                <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5l-Ou-8OP">
+                                            <rect key="frame" x="0.0" y="9" width="100" height="21"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="has-mA-taD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="l5l-Ou-8OP" firstAttribute="leading" secondItem="tGS-Vc-r0X" secondAttribute="leading" id="1Yq-yp-I5e"/>
+                                    <constraint firstAttribute="trailing" secondItem="l5l-Ou-8OP" secondAttribute="trailing" id="8TJ-Es-bJ6"/>
+                                    <constraint firstItem="l5l-Ou-8OP" firstAttribute="centerY" secondItem="tGS-Vc-r0X" secondAttribute="centerY" id="F8E-p3-gBy"/>
+                                </constraints>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="fmM-JX-jLH" id="Gla-6Q-mqu"/>
+                            <outlet property="delegate" destination="fmM-JX-jLH" id="UwY-QX-ted"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rPa-rJ-2W8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1033" y="403"/>
+        </scene>
+        <!--用户菜单-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Aggregate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="用户菜单" id="BYZ-38-t0r" customClass="ViewController" customModule="Aggregate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

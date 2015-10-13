@@ -4,4 +4,3 @@
 #import "SMTabbedSplitViewController.h"
 #import "SMTabBarItem.h"
 #import "JVFloatingDrawerAnimation.h"
-#import "HamburgerButton.h"

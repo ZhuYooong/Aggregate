@@ -28,8 +28,8 @@
 		DE1573781BC66B1A000A88AA /* SMTabBarItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1573711BC66B1A000A88AA /* SMTabBarItemCell.m */; settings = {ASSET_TAGS = (); }; };
 		DE1573791BC66B1A000A88AA /* SMTabbedSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1573731BC66B1A000A88AA /* SMTabbedSplitViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DE6B45971BCB653700E9D80E /* NodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		DE6B459B1BCB821F00E9D80E /* HamburgerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6B459A1BCB821F00E9D80E /* HamburgerButton.m */; settings = {ASSET_TAGS = (); }; };
 		DE6B45BC1BCBB54F00E9D80E /* NetDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6B45BB1BCBB54F00E9D80E /* NetDataManager.swift */; settings = {ASSET_TAGS = (); }; };
+		DE9643731BCD052600B621EA /* AllNodeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE9643721BCD052600B621EA /* AllNodeCollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,9 +88,8 @@
 		DE1573721BC66B1A000A88AA /* SMTabbedSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTabbedSplitViewController.h; sourceTree = "<group>"; };
 		DE1573731BC66B1A000A88AA /* SMTabbedSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTabbedSplitViewController.m; sourceTree = "<group>"; };
 		DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeCollectionViewCell.swift; sourceTree = "<group>"; };
-		DE6B45991BCB821F00E9D80E /* HamburgerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamburgerButton.h; sourceTree = "<group>"; };
-		DE6B459A1BCB821F00E9D80E /* HamburgerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamburgerButton.m; sourceTree = "<group>"; };
 		DE6B45BB1BCBB54F00E9D80E /* NetDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetDataManager.swift; sourceTree = "<group>"; };
+		DE9643721BCD052600B621EA /* AllNodeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNodeCollectionViewController.swift; sourceTree = "<group>"; };
 		E6F684E9DEB86D9C9D644AF3 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -220,10 +219,9 @@
 		DE15735B1BC6416F000A88AA /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DE15732B1BC6409F000A88AA /* ViewController.swift */,
-				DE0EC3DE1BC7699F00F517AF /* HomeViewController.swift */,
-				DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */,
 				DE0EC3E01BC78C6200F517AF /* MainDrawViewController.swift */,
+				DE9643751BCD054900B621EA /* Menu */,
+				DE9643761BCD055700B621EA /* Home */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -247,7 +245,6 @@
 		DE1573611BC66AE8000A88AA /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				DE6B45981BCB820A00E9D80E /* HamburgerButton */,
 				DE0EC3D31BC7678700F517AF /* JVFloatingDrawer */,
 				DE1573621BC66B1A000A88AA /* SMTabbedSplitViewController */,
 			);
@@ -303,21 +300,38 @@
 			path = TabBarItem;
 			sourceTree = "<group>";
 		};
-		DE6B45981BCB820A00E9D80E /* HamburgerButton */ = {
-			isa = PBXGroup;
-			children = (
-				DE6B45991BCB821F00E9D80E /* HamburgerButton.h */,
-				DE6B459A1BCB821F00E9D80E /* HamburgerButton.m */,
-			);
-			name = HamburgerButton;
-			sourceTree = "<group>";
-		};
 		DE6B45BA1BCBB17900E9D80E /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				DE6B45BB1BCBB54F00E9D80E /* NetDataManager.swift */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		DE9643741BCD053900B621EA /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */,
+				DE9643721BCD052600B621EA /* AllNodeCollectionViewController.swift */,
+			);
+			name = Node;
+			sourceTree = "<group>";
+		};
+		DE9643751BCD054900B621EA /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DE15732B1BC6409F000A88AA /* ViewController.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		DE9643761BCD055700B621EA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				DE0EC3DE1BC7699F00F517AF /* HomeViewController.swift */,
+				DE9643741BCD053900B621EA /* Node */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -507,7 +521,6 @@
 				DE15732C1BC6409F000A88AA /* ViewController.swift in Sources */,
 				DE0EC3DD1BC7678700F517AF /* JVFloatingDrawerViewController.m in Sources */,
 				DE15732A1BC6409F000A88AA /* AppDelegate.swift in Sources */,
-				DE6B459B1BCB821F00E9D80E /* HamburgerButton.m in Sources */,
 				DE6B45BC1BCBB54F00E9D80E /* NetDataManager.swift in Sources */,
 				DE0EC3DC1BC7678700F517AF /* JVFloatingDrawerView.m in Sources */,
 				DE1573751BC66B1A000A88AA /* SMMasterViewController.m in Sources */,
@@ -519,6 +532,7 @@
 				DE0EC3DF1BC7699F00F517AF /* HomeViewController.swift in Sources */,
 				DE1573791BC66B1A000A88AA /* SMTabbedSplitViewController.m in Sources */,
 				DE6B45971BCB653700E9D80E /* NodeCollectionViewCell.swift in Sources */,
+				DE9643731BCD052600B621EA /* AllNodeCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

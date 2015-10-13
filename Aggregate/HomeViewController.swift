@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import DOHamburgerButton
 
 class HomeViewController: UIViewController {
     var drawerAnimator: JVFloatingDrawerSpringAnimator?
-    let hamburgerBtn = HamburgerButton()//显示节点按钮
+    let hamburgerBtn = DOHamburgerButton()//显示节点按钮
     let buttonItem = Int(UIScreen.mainScreen().bounds.size.width / 60)//每行显示的节点数
     let nodeListNumber = 17
     @IBOutlet weak var nodeHeight: NSLayoutConstraint!//下边的高度
@@ -49,8 +50,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("nodeCell", forIndexPath: indexPath) as! NodeCollectionViewCell
+        //设置边框
+        cell.contentView.layer.borderWidth = 0.5
+        cell.contentView.layer.borderColor = UIColor.purpleColor().CGColor
         if (indexPath.row == buttonItem - 1) {
-            hamburgerBtn.frame = CGRectMake(10, -8, 60, 40)
+            hamburgerBtn.frame = CGRectMake(0, -2, 60, 40)
+            hamburgerBtn.color = UIColor.redColor()
+            hamburgerBtn.titleLabel?.font = UIFont.systemFontOfSize(12)
             hamburgerBtn.addTarget(self, action: "showOrHideNode:", forControlEvents: UIControlEvents.TouchUpInside)
             cell.contentView.addSubview(hamburgerBtn)
         }else if (indexPath.row == nodeListNumber - 1) {
@@ -80,19 +86,20 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             
         }
     }
-    func showOrHideNode(sender: HamburgerButton) {
-        sender.showMenu = !sender.showMenu
-        if (sender.showMenu) {
-            UIView.animateWithDuration(0.6, animations: {
+    func showOrHideNode(sender: DOHamburgerButton) {
+        if (sender.selected) {//收缩
+            sender.deselect()
+            UIView.animateWithDuration(0.2, animations: {
+                () in
+                self.nodeHeight.constant = 40
+                self.view.layoutIfNeeded()
+            })
+        }else{//展开
+            sender.select()
+            UIView.animateWithDuration(0.2, animations: {
                 () in
                 let count = CGFloat(self.nodeListNumber) / CGFloat(self.buttonItem)
                 self.nodeHeight.constant = 40 * ceil(count)
-                self.view.layoutIfNeeded()
-            })
-        }else{
-            UIView.animateWithDuration(0.6, animations: {
-                () in
-                self.nodeHeight.constant = 40
                 self.view.layoutIfNeeded()
             })
         }
