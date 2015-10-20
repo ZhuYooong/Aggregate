@@ -1,8 +1,8 @@
 //
-//  AllNodeCollectionViewController.swift
+//  CollectionViewController.swift
 //  Aggregate
 //
-//  Created by 朱勇 on 15/10/13.
+//  Created by 朱勇 on 15/10/14.
 //  Copyright © 2015年 朱勇. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class AllNodeCollectionViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

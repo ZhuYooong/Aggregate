@@ -50,9 +50,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("nodeCell", forIndexPath: indexPath) as! NodeCollectionViewCell
-        //设置边框
-        cell.contentView.layer.borderWidth = 0.5
-        cell.contentView.layer.borderColor = UIColor.purpleColor().CGColor
         if (indexPath.row == buttonItem - 1) {
             hamburgerBtn.frame = CGRectMake(0, -2, 60, 40)
             hamburgerBtn.color = UIColor.redColor()
@@ -81,7 +78,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if (indexPath.row == buttonItem - 1) {
         }else if (indexPath.row == nodeListNumber - 1) {//跳转全部节点
-            
+            let allNodeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllNodeID") as! AllNodeViewController
+            navigationController?.pushViewController(allNodeViewController, animated: true)
         }else {
             
         }
