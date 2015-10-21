@@ -53,7 +53,7 @@ class NodeListView: UIView {
                 newRect.size = CGSizeMake(newWidth, newHeight)
                 tagBtn.frame = newRect
                 previousFrame = tagBtn.frame
-                setViewHeight(self, andHeight: CGFloat(totalHeight) + newHeight + 10)
+                setViewHeight(self, andHeight: CGFloat(totalHeight) + newHeight + 4)
                 self.addSubview(tagBtn)
             }
         }

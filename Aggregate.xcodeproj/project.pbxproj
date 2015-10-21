@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		59A8633F00FE70AB8385533C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D4E6D70E3C90ACD939C53 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DE0129A41BCDF5F70039B643 /* LXReorderableCollectionViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0129A31BCDF5F70039B643 /* LXReorderableCollectionViewFlowLayout.m */; settings = {ASSET_TAGS = (); }; };
-		DE0129A61BCE2DB00039B643 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0129A51BCE2DB00039B643 /* CollectionViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DE0129AD1BCE5A9F0039B643 /* AllNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0129AC1BCE5A9F0039B643 /* AllNodeViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		DE0EC3DB1BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0EC3D61BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m */; settings = {ASSET_TAGS = (); }; };
 		DE0EC3DC1BC7678700F517AF /* JVFloatingDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = DE0EC3D81BC7678700F517AF /* JVFloatingDrawerView.m */; settings = {ASSET_TAGS = (); }; };
@@ -57,7 +56,6 @@
 		CA0D4E6D70E3C90ACD939C53 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0129A21BCDF5F70039B643 /* LXReorderableCollectionViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXReorderableCollectionViewFlowLayout.h; sourceTree = "<group>"; };
 		DE0129A31BCDF5F70039B643 /* LXReorderableCollectionViewFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXReorderableCollectionViewFlowLayout.m; sourceTree = "<group>"; };
-		DE0129A51BCE2DB00039B643 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		DE0129AC1BCE5A9F0039B643 /* AllNodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNodeViewController.swift; sourceTree = "<group>"; };
 		DE0EC3D41BC7678700F517AF /* JVFloatingDrawerAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerAnimation.h; sourceTree = "<group>"; };
 		DE0EC3D51BC7678700F517AF /* JVFloatingDrawerSpringAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatingDrawerSpringAnimator.h; sourceTree = "<group>"; };
@@ -329,7 +327,6 @@
 			isa = PBXGroup;
 			children = (
 				DE6B45961BCB653700E9D80E /* NodeCollectionViewCell.swift */,
-				DE0129A51BCE2DB00039B643 /* CollectionViewController.swift */,
 				DE0129AC1BCE5A9F0039B643 /* AllNodeViewController.swift */,
 				DEE66EB01BCF46180021661F /* NodeListView.swift */,
 			);
@@ -549,7 +546,6 @@
 				DE0129AD1BCE5A9F0039B643 /* AllNodeViewController.swift in Sources */,
 				DE1573761BC66B1A000A88AA /* SMTabBar.m in Sources */,
 				DEE66EB11BCF46180021661F /* NodeListView.swift in Sources */,
-				DE0129A61BCE2DB00039B643 /* CollectionViewController.swift in Sources */,
 				DE0129A41BCDF5F70039B643 /* LXReorderableCollectionViewFlowLayout.m in Sources */,
 				DE1573321BC6409F000A88AA /* Aggregate.xcdatamodeld in Sources */,
 				DE0EC3DF1BC7699F00F517AF /* HomeViewController.swift in Sources */,
