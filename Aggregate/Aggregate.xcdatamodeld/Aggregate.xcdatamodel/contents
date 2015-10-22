@@ -1,4 +1,77 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="14F27" minimumToolsVersion="Automatic">
+    <entity name="NodeInfo" representedClassName=".NodeInfo" syncable="YES">
+        <attribute name="created" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="footer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="header" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title_alternative" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="topics" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RepliesInfo" representedClassName=".RepliesInfo" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content_rendered" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_modified" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_avatar_large" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_avatar_mini" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_avatar_normal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_tagline" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_username" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="thanks" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TopicInfo" representedClassName=".TopicInfo" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="content_rendered" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_modified" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_touched" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_avatar_large" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_avatar_mini" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_avatar_normal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_tagline" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="member_username" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_avatar_large" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_avatar_mini" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_avatar_normal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_topics" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="node_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="replies" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserInfo" representedClassName=".UserInfo" syncable="YES">
+        <attribute name="avatar_large" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatar_mini" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="avatar_normal" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="btc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="github" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="psn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tagline" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="twitter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="website" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="UserInfo" positionX="-63" positionY="-18" width="128" height="285"/>
+        <element name="TopicInfo" positionX="-54" positionY="108" width="128" height="390"/>
+        <element name="NodeInfo" positionX="-27" positionY="162" width="128" height="180"/>
+        <element name="RepliesInfo" positionX="-9" positionY="171" width="128" height="225"/>
+    </elements>
 </model>

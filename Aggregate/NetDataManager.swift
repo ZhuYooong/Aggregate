@@ -52,11 +52,11 @@ extension NetDataManager {
         }
     }
     //取最新主题
-    func findLatestNode(NetData: (data: NSData?)->Void) {
+    func findLatestTopics(NetData: (data: NSData?)->Void) {
         GETRequest("\(V2EXBaseURL)/topics/latest.json", NetData: NetData)
     }
     //取热议主题
-    func findHotNode(NetData: (data: NSData?)->Void) {
+    func findHotTopics(NetData: (data: NSData?)->Void) {
         GETRequest("\(V2EXBaseURL)/topics/hot.json", NetData: NetData)
     }
     //取主题信息

@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         drawerAnimator = JVFloatingDrawerSpringAnimator()
         drawerViewController = drawersStoryboard?.instantiateViewControllerWithIdentifier("drawID") as? MainDrawViewController
         homeViewController = drawersStoryboard?.instantiateViewControllerWithIdentifier("homeID")
-        menuViewController = drawersStoryboard?.instantiateViewControllerWithIdentifier("MenuID")
+        menuViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("MenuID")
     }
     func configureDrawerViewController() {
         drawerViewController!.leftViewController = menuViewController

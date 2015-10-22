@@ -14,12 +14,15 @@ class HomeViewController: UIViewController {
     let hamburgerBtn = DOHamburgerButton()//显示节点按钮
     let buttonItem = Int(UIScreen.mainScreen().bounds.size.width / 60)//每行显示的节点数
     let nodeListNumber = 17
+    var topicContentArray = [TopicInfo]()
     @IBOutlet weak var nodeHeight: NSLayoutConstraint!//下边的高度
     @IBOutlet weak var nodeCollectionView: UICollectionView!
+    @IBOutlet weak var topicTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         aboutMenuController()
         nodeCollectionView.registerClass(NodeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "nodeCell")
+//        topicTableView.registerClass(TopicTableViewCell.classForCoder(), forCellReuseIdentifier: "topicCell")
     }
     //MARK:- 与菜单界面相关的
     func aboutMenuController() {
@@ -38,7 +41,7 @@ class HomeViewController: UIViewController {
         view.addGestureRecognizer(swipeGesture)
     }
     func handleSwipeGesture(sender: UISwipeGestureRecognizer){
-        if (sender.direction == UISwipeGestureRecognizerDirection.Right) {
+        if sender.direction == UISwipeGestureRecognizerDirection.Right {
             (UIApplication.sharedApplication().delegate as! AppDelegate).drawerViewController!.toggleDrawerWithSide(JVFloatingDrawerSide.Left, animated: true, completion: nil)
         }
     }
@@ -50,14 +53,30 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("nodeCell", forIndexPath: indexPath) as! NodeCollectionViewCell
-        if (indexPath.row == buttonItem - 1) {
+        if indexPath.row == 0 {
+            if cell.contentView.subviews.count == 0 {
+                let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
+                nodeLable.textAlignment = NSTextAlignment.Center
+                nodeLable.font = UIFont.systemFontOfSize(12)
+                nodeLable.text = "今日热议"
+                cell.contentView.addSubview(nodeLable)
+            }
+        }else if indexPath.row == 1 {
+            if cell.contentView.subviews.count == 0 {
+                let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
+                nodeLable.textAlignment = NSTextAlignment.Center
+                nodeLable.font = UIFont.systemFontOfSize(12)
+                nodeLable.text = "全部"
+                cell.contentView.addSubview(nodeLable)
+            }
+        }else if indexPath.row == buttonItem - 1 {
             hamburgerBtn.frame = CGRectMake(0, -2, 60, 40)
             hamburgerBtn.color = UIColor.redColor()
             hamburgerBtn.titleLabel?.font = UIFont.systemFontOfSize(12)
             hamburgerBtn.addTarget(self, action: "showOrHideNode:", forControlEvents: UIControlEvents.TouchUpInside)
             cell.contentView.addSubview(hamburgerBtn)
-        }else if (indexPath.row == nodeListNumber - 1) {
-            if (cell.contentView.subviews.count == 0) {
+        }else if indexPath.row == nodeListNumber - 1 {
+            if cell.contentView.subviews.count == 0 {
                 let moreLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
                 moreLable.textAlignment = NSTextAlignment.Center
                 moreLable.font = UIFont.systemFontOfSize(12)
@@ -65,7 +84,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 cell.contentView.addSubview(moreLable)
             }
         }else {
-            if (cell.contentView.subviews.count == 0) {
+            if cell.contentView.subviews.count == 0 {
                 let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
                 nodeLable.textAlignment = NSTextAlignment.Center
                 nodeLable.font = UIFont.systemFontOfSize(12)
@@ -76,8 +95,11 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         return cell
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.row == buttonItem - 1) {
-        }else if (indexPath.row == nodeListNumber - 1) {//跳转全部节点
+        if indexPath.row == 0 {//热点
+            topicContentArray = HomeViewModel.shareHomeViewModel().findHotTopics()
+        }else if indexPath.row == 1 {//全部
+        }else if indexPath.row == buttonItem - 1 {
+        }else if indexPath.row == nodeListNumber - 1 {//跳转全部节点
             let allNodeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllNodeID") as! AllNodeViewController
             navigationController?.pushViewController(allNodeViewController, animated: true)
         }else {
@@ -85,7 +107,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     func showOrHideNode(sender: DOHamburgerButton) {
-        if (sender.selected) {//收缩
+        if sender.selected {//收缩
             sender.deselect()
             UIView.animateWithDuration(0.2, animations: {
                 () in
@@ -101,5 +123,26 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 self.view.layoutIfNeeded()
             })
         }
+    }
+}
+//MARK:- topic表代理
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return topicContentArray.count
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("topicCell", forIndexPath: indexPath) as! TopicTableViewCell
+        if topicContentArray.count > indexPath.row {
+            cell.topicContent.text = topicContentArray[indexPath.row].content
+            cell.userNameLable.text = topicContentArray[indexPath.row].member_username
+            cell.nodeLable.text = topicContentArray[indexPath.row].node_name
+        }
+        return cell
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 77
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
 }
