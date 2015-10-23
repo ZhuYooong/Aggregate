@@ -8,7 +8,9 @@
 
 import UIKit
 import SwiftyJSON
+import CoreData
 class HomeViewModel: NSObject {
+    var context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext //获取存储的上下文
     static let homeViewModel: HomeViewModel = HomeViewModel()
     static func shareHomeViewModel() -> HomeViewModel {
         return homeViewModel
@@ -21,7 +23,7 @@ class HomeViewModel: NSObject {
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
-                    let topic = TopicInfo()
+                    let topic = NSEntityDescription.insertNewObjectForEntityForName("TopicInfo", inManagedObjectContext: self.context) as! TopicInfo
                     topic.id = subJson["id"].string
                     topic.title = subJson["title"].string
                     topic.url = subJson["url"].string

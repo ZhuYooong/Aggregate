@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -154,6 +154,11 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="4bZ-af-dn7" id="fMc-ao-wmq"/>
+                                    <outlet property="delegate" destination="4bZ-af-dn7" id="N8f-65-9JN"/>
+                                </connections>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="45t-yR-ePw">
                                 <rect key="frame" x="0.0" y="64" width="600" height="40"/>
@@ -193,6 +198,7 @@
                     <connections>
                         <outlet property="nodeCollectionView" destination="45t-yR-ePw" id="6he-DX-F02"/>
                         <outlet property="nodeHeight" destination="Brl-8x-gk5" id="dS1-1p-ij3"/>
+                        <outlet property="topicTableView" destination="Nwz-YO-dhn" id="vdK-oY-Cb5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1M-gC-58K" userLabel="First Responder" sceneMemberID="firstResponder"/>

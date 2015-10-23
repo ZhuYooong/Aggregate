@@ -21,8 +21,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         aboutMenuController()
+        initItem()
+    }
+    //MARK:- 初始化控件
+    func initItem() {
         nodeCollectionView.registerClass(NodeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "nodeCell")
-//        topicTableView.registerClass(TopicTableViewCell.classForCoder(), forCellReuseIdentifier: "topicCell")
+        topicTableView.registerClass(TopicTableViewCell.classForCoder(), forCellReuseIdentifier: "topicCell")
+        topicContentArray = HomeViewModel.shareHomeViewModel().findHotTopics()
+        print(topicContentArray.count)
+        topicTableView.reloadData()
     }
     //MARK:- 与菜单界面相关的
     func aboutMenuController() {
