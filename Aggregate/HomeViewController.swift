@@ -26,10 +26,19 @@ class HomeViewController: UIViewController {
     //MARK:- 初始化控件
     func initItem() {
         nodeCollectionView.registerClass(NodeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "nodeCell")
-        topicTableView.registerClass(TopicTableViewCell.classForCoder(), forCellReuseIdentifier: "topicCell")
-        topicContentArray = HomeViewModel.shareHomeViewModel().findHotTopics()
-        print(topicContentArray.count)
-        topicTableView.reloadData()
+        HomeViewModel.shareHomeViewModel().findHotTopics() {
+            (contentArray: [TopicInfo]?) in
+            if let contentArray = contentArray where contentArray.count > 0 {
+                self.title = "今日热议"
+                self.topicContentArray = contentArray
+                self.topicTableView.reloadData()
+            }
+        }        
+    }
+    func initTitle(cell: NodeCollectionViewCell, index: Int) {//标题
+        if let tittleLable = cell.contentView.subviews[0] as? UILabel {
+            title = tittleLable.text
+        }
     }
     //MARK:- 与菜单界面相关的
     func aboutMenuController() {
@@ -103,14 +112,30 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {//热点
-            topicContentArray = HomeViewModel.shareHomeViewModel().findHotTopics()
+            HomeViewModel.shareHomeViewModel().findHotTopics() {
+                (contentArray: [TopicInfo]?) in
+                if let contentArray = contentArray where contentArray.count > 0 {
+                    self.topicContentArray = contentArray
+                    self.topicTableView.reloadData()
+                    self.title = "今日热议"
+                }
+            }
         }else if indexPath.row == 1 {//全部
+            HomeViewModel.shareHomeViewModel().findLastestTopics() {
+                (contentArray: [TopicInfo]?) in
+                if let contentArray = contentArray where contentArray.count > 0 {
+                    self.topicContentArray = contentArray
+                    self.topicTableView.reloadData()
+                    self.title = "全部"
+                }
+            }
         }else if indexPath.row == buttonItem - 1 {
         }else if indexPath.row == nodeListNumber - 1 {//跳转全部节点
             let allNodeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllNodeID") as! AllNodeViewController
             navigationController?.pushViewController(allNodeViewController, animated: true)
         }else {
-            
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("nodeCell", forIndexPath: indexPath) as! NodeCollectionViewCell
+            initTitle(cell, index: indexPath.row)
         }
     }
     func showOrHideNode(sender: DOHamburgerButton) {
@@ -140,14 +165,35 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("topicCell", forIndexPath: indexPath) as! TopicTableViewCell
         if topicContentArray.count > indexPath.row {
-            cell.topicContent.text = topicContentArray[indexPath.row].content
+            cell.topicContent.text = topicContentArray[indexPath.row].title
+            cell.topicContentHeight.constant = HomeViewModel.shareHomeViewModel().initHeight(topicContentArray, index: indexPath.row)
             cell.userNameLable.text = topicContentArray[indexPath.row].member_username
-            cell.nodeLable.text = topicContentArray[indexPath.row].node_name
+            if let timeStr = Double(topicContentArray[indexPath.row].created!) {
+                let date = NSDate(timeIntervalSince1970: timeStr)
+                cell.topicTimeLable.text = HomeViewModel.shareHomeViewModel().initDate(date)
+            }
+            cell.nodeLable.text = topicContentArray[indexPath.row].node_title
+            if let imageURL = topicContentArray[indexPath.row].member_avatar_mini {
+                ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
+                    cell.userIconImageView.image = image
+                })
+            }
+            if let nodeText = cell.nodeLable.text {
+                let option = NSStringDrawingOptions.UsesLineFragmentOrigin
+                let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(12)]
+                cell.nodeWidth.constant = nodeText.boundingRectWithSize(CGSizeMake(100, 16), options: option, attributes: attributes, context: nil).size.width + 2
+            }
+            view.layoutIfNeeded()
         }
         return cell
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 77
+        if topicContentArray.count > indexPath.row {
+            let contentHeight = HomeViewModel.shareHomeViewModel().initHeight(topicContentArray, index: indexPath.row)
+            return contentHeight + 40
+        }else {
+            return 77
+        }
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         

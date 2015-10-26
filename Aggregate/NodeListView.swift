@@ -11,13 +11,13 @@ typealias callbackfunc = ([String]) ->Void
 class NodeListView: UIView {
     var totalHeight: Float = 0
     var previousFrame: CGRect?
-    var tagArray = [String]?()
+    var tagArray = [NodeInfo]?()
     var didselectItem = callbackfunc?()//回调统计选中tag
-    func setTagWithTagArray(array: [String]?, theBackgroundColor: UIColor?, signalTagColor: UIColor?, canTouch: Bool){
+    func setTagWithTagArray(array: [NodeInfo]?, theBackgroundColor: UIColor?, signalTagColor: UIColor?, canTouch: Bool){
         previousFrame = CGRectZero
         totalHeight = 0
         if let array = array {
-            tagArray = [String](array)
+            tagArray = [NodeInfo](array)
             for view in self.subviews {
                 view.removeFromSuperview()
             }
@@ -34,27 +34,29 @@ class NodeListView: UIView {
                 tagBtn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
                 tagBtn.titleLabel?.font = UIFont.boldSystemFontOfSize(15)
                 tagBtn.addTarget(self, action: "tagBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
-                tagBtn.setTitle(value, forState: UIControlState.Normal)
+                tagBtn.setTitle(value.title, forState: UIControlState.Normal)
                 tagBtn.tag = 1000 + index
                 tagBtn.layer.cornerRadius = 13
                 tagBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
                 tagBtn.layer.borderWidth = 0.3
                 tagBtn.clipsToBounds = true
-                let stringSize = value.boundingRectWithSize(CGSizeMake(2000, 40), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15)], context: nil)
-                let newWidth = stringSize.width + 7 * 3
-                let newHeight = stringSize.height + 3 * 3
-                var newRect = CGRectZero
-                if let previousFrameX = previousFrame?.origin.x, previousFrameWidth = previousFrame?.size.width where previousFrameX + previousFrameWidth + newWidth + 10 > UIScreen.mainScreen().bounds.width {
-                    newRect.origin = CGPointMake(10, previousFrame!.origin.y + newHeight + 10)
-                    totalHeight += Float(newHeight) + 10
-                }else {
-                    newRect.origin = CGPointMake(previousFrame!.origin.x + previousFrame!.size.width + 10, previousFrame!.origin.y)
+                if let tittle = value.title {
+                    let stringSize = tittle.boundingRectWithSize(CGSizeMake(2000, 40), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15)], context: nil)
+                    let newWidth = stringSize.width + 7 * 3
+                    let newHeight = stringSize.height + 3 * 3
+                    var newRect = CGRectZero
+                    if let previousFrameX = previousFrame?.origin.x, previousFrameWidth = previousFrame?.size.width where previousFrameX + previousFrameWidth + newWidth + 10 > UIScreen.mainScreen().bounds.width {
+                        newRect.origin = CGPointMake(10, previousFrame!.origin.y + newHeight + 10)
+                        totalHeight += Float(newHeight) + 10
+                    }else {
+                        newRect.origin = CGPointMake(previousFrame!.origin.x + previousFrame!.size.width + 10, previousFrame!.origin.y)
+                    }
+                    newRect.size = CGSizeMake(newWidth, newHeight)
+                    tagBtn.frame = newRect
+                    previousFrame = tagBtn.frame
+                    setViewHeight(self, andHeight: CGFloat(totalHeight) + newHeight + 4)
+                    self.addSubview(tagBtn)
                 }
-                newRect.size = CGSizeMake(newWidth, newHeight)
-                tagBtn.frame = newRect
-                previousFrame = tagBtn.frame
-                setViewHeight(self, andHeight: CGFloat(totalHeight) + newHeight + 4)
-                self.addSubview(tagBtn)
             }
         }
         if let theBackgroundColor = theBackgroundColor {//整个view的背景色
@@ -82,7 +84,7 @@ class NodeListView: UIView {
         var temArray = [String]()
         for view in self.subviews {
             if let temBtn: UIButton = (view as? UIButton) where temBtn.selected == true {
-                if let temStr = tagArray?[temBtn.tag - 1000] {
+                if let temStr = tagArray?[temBtn.tag - 1000].title {
                   temArray.append(temStr)
                 }
             }
