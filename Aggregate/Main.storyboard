@@ -239,6 +239,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oq0-4i-GzD">
                                 <rect key="frame" x="0.0" y="25" width="600" height="575"/>
                                 <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgZ-xn-NZG" customClass="NodeListView" customModule="Aggregate" customModuleProvider="target">
                                 <rect key="frame" x="8" y="49" width="584" height="0.0"/>

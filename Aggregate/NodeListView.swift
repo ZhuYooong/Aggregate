@@ -7,11 +7,13 @@
 //
 
 import UIKit
-typealias callbackfunc = ([String]) ->Void
+import CoreData
+typealias callbackfunc = ([NodeInfo]?, [TopicInfo]?, String?) ->Void
 class NodeListView: UIView {
     var totalHeight: Float = 0
     var previousFrame: CGRect?
     var tagArray = [NodeInfo]?()
+    var canCompiled = false //是否需要编辑
     var didselectItem = callbackfunc?()//回调统计选中tag
     func setTagWithTagArray(array: [NodeInfo]?, theBackgroundColor: UIColor?, signalTagColor: UIColor?, canTouch: Bool){
         previousFrame = CGRectZero
@@ -23,13 +25,13 @@ class NodeListView: UIView {
             }
             for (index,value) in array.enumerate(){
                 let tagBtn = UIButton(type: UIButtonType.Custom)
-                tagBtn.frame=CGRectZero
+                tagBtn.frame = CGRectZero
                 if let signalTagColor = signalTagColor {//可以单一设置tag的颜色
                     tagBtn.backgroundColor = signalTagColor
                 }else { //tag颜色多样
                     tagBtn.backgroundColor = UIColor(red: CGFloat(random()%255/255), green: CGFloat(random()%255/255), blue: CGFloat(random()%255/255), alpha: 1)
                 }
-                tagBtn.userInteractionEnabled=canTouch//回调统计选中tag
+                tagBtn.userInteractionEnabled = canTouch//回调统计选中tag
                 tagBtn.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
                 tagBtn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
                 tagBtn.titleLabel?.font = UIFont.boldSystemFontOfSize(15)
@@ -40,6 +42,21 @@ class NodeListView: UIView {
                 tagBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
                 tagBtn.layer.borderWidth = 0.3
                 tagBtn.clipsToBounds = true
+                if canTouch {//显示自己的节点
+                    let applicationDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let managedObjectContext = applicationDelegate.managedObjectContext
+                    let fetchRequest = NSFetchRequest(entityName: "TopicInfo")
+                    do {
+                        let fetchResults = try managedObjectContext.executeFetchRequest(fetchRequest) as! [TopicInfo]
+                        for mineNode in fetchResults {
+                            if mineNode.id == value.id {
+                                tagBtnClick(tagBtn)
+                            }
+                        }
+                    } catch let error1 as NSError {
+                        print(error1)
+                    }
+                }
                 if let tittle = value.title {
                     let stringSize = tittle.boundingRectWithSize(CGSizeMake(2000, 40), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15)], context: nil)
                     let newWidth = stringSize.width + 7 * 3
@@ -72,23 +89,32 @@ class NodeListView: UIView {
         view.frame = tempFrame
     }
     func tagBtnClick(sender: UIButton) {
-        sender.selected = !sender.selected
-        if sender.selected == true {
-            sender.backgroundColor = UIColor.orangeColor()
-        }else if sender.selected == false {
-            sender.backgroundColor = UIColor.whiteColor()
+        if canCompiled == true {//编辑节点
+            sender.selected = !sender.selected
+            if sender.selected == true {
+                sender.backgroundColor = UIColor.orangeColor()
+            }else if sender.selected == false {
+                sender.backgroundColor = UIColor.whiteColor()
+            }
+            didSelectItems()
+        }else {
+            if let id = tagArray?[sender.tag - 1000].id {
+                HomeViewModel.shareHomeViewModel().findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
+                    (contentArray: [TopicInfo]?) in
+                    self.didselectItem!(nil, contentArray, sender.titleLabel?.text)
+                })
+            }
         }
-        didSelectItems()
     }
     func didSelectItems() {
-        var temArray = [String]()
+        var temArray = [NodeInfo]()
         for view in self.subviews {
             if let temBtn: UIButton = (view as? UIButton) where temBtn.selected == true {
-                if let temStr = tagArray?[temBtn.tag - 1000].title {
+                if let temStr = tagArray?[temBtn.tag - 1000] {
                   temArray.append(temStr)
                 }
             }
         }
-        didselectItem!(temArray)
+        didselectItem!(temArray, nil, nil)
     }
 }

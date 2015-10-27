@@ -33,7 +33,8 @@ class HomeViewController: UIViewController {
                 self.topicContentArray = contentArray
                 self.topicTableView.reloadData()
             }
-        }        
+        }
+        topicTableView.tableFooterView = UIView()
     }
     func initTitle(cell: NodeCollectionViewCell, index: Int) {//标题
         if let tittleLable = cell.contentView.subviews[0] as? UILabel {
@@ -132,26 +133,33 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }else if indexPath.row == buttonItem - 1 {
         }else if indexPath.row == nodeListNumber - 1 {//跳转全部节点
             let allNodeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllNodeID") as! AllNodeViewController
+            allNodeViewController.didselectItem = {
+                (array: [TopicInfo], titleStr: String) in
+                self.topicContentArray = array
+                self.topicTableView.reloadData()
+                self.title = titleStr
+            }
             navigationController?.pushViewController(allNodeViewController, animated: true)
         }else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("nodeCell", forIndexPath: indexPath) as! NodeCollectionViewCell
             initTitle(cell, index: indexPath.row)
         }
+        showOrHideNode(hamburgerBtn)
     }
     func showOrHideNode(sender: DOHamburgerButton) {
-        if sender.selected {//收缩
-            sender.deselect()
-            UIView.animateWithDuration(0.2, animations: {
-                () in
-                self.nodeHeight.constant = 40
-                self.view.layoutIfNeeded()
-            })
-        }else{//展开
+        if self.nodeHeight.constant == 40 {//展开
             sender.select()
             UIView.animateWithDuration(0.2, animations: {
                 () in
                 let count = CGFloat(self.nodeListNumber) / CGFloat(self.buttonItem)
                 self.nodeHeight.constant = 40 * ceil(count)
+                self.view.layoutIfNeeded()
+            })
+        }else{//收缩
+            sender.deselect()
+            UIView.animateWithDuration(0.2, animations: {
+                () in
+                self.nodeHeight.constant = 40
                 self.view.layoutIfNeeded()
             })
         }

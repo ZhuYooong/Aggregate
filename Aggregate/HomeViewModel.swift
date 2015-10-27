@@ -90,6 +90,43 @@ class HomeViewModel: NSObject {
             initData(contentArray: hotTopics)
         }
     }
+    func findNodeTopics(username: String?, nodeId: String?, nodeName: String?, initData: (contentArray: [TopicInfo]?)->Void) {//根据提供信息取主题
+        NetDataManager.shareNetDataManager().findTopics(username, nodeId: nodeId, nodeName: nodeName){
+            (data) in
+            var hotTopics = [TopicInfo]()
+            if let data = data {
+                let json = JSON(data: data)
+                for subJson in json.arrayValue {
+                    let topic = NSEntityDescription.insertNewObjectForEntityForName("TopicInfo", inManagedObjectContext: self.context) as! TopicInfo
+                    topic.id = subJson["id"].stringValue
+                    topic.title = subJson["title"].stringValue
+                    topic.url = subJson["url"].stringValue
+                    topic.content = subJson["content"].stringValue
+                    topic.content_rendered = subJson["content_rendered"].stringValue
+                    topic.replies = subJson["replies"].stringValue
+                    topic.member_id = subJson["member"]["id"].stringValue
+                    topic.member_username = subJson["member"]["username"].stringValue
+                    topic.member_tagline = subJson["member"]["tagline"].stringValue
+                    topic.member_avatar_mini = subJson["member"]["avatar_mini"].stringValue
+                    topic.member_avatar_normal = subJson["member"]["avatar_normal"].stringValue
+                    topic.member_avatar_large = subJson["member"]["avatar_large"].stringValue
+                    topic.node_id = subJson["node"]["id"].stringValue
+                    topic.node_topics = subJson["node"]["topics"].stringValue
+                    topic.node_avatar_mini = subJson["node"]["avatar_mini"].stringValue
+                    topic.node_avatar_normal = subJson["node"]["avatar_normal"].stringValue
+                    topic.node_avatar_large = subJson["node"]["avatar_large"].stringValue
+                    topic.node_title = subJson["node"]["title"].stringValue
+                    topic.node_name = subJson["node"]["name"].stringValue
+                    topic.node_url = subJson["node"]["url"].stringValue
+                    topic.created = subJson["created"].stringValue
+                    topic.last_modified = subJson["last_modified"].stringValue
+                    topic.last_touched = subJson["last_touched"].stringValue
+                    hotTopics.append(topic)
+                }
+            }
+            initData(contentArray: hotTopics)
+        }
+    }
     //MARK:-数据逻辑
     func initHeight(contentArray: [TopicInfo], index: Int) -> CGFloat {//cell高度
         var height: CGFloat = 36
