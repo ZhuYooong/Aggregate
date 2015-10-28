@@ -8,13 +8,15 @@
 
 import UIKit
 import DOHamburgerButton
-
+import PKHUD
 class HomeViewController: UIViewController {
     var drawerAnimator: JVFloatingDrawerSpringAnimator?
     let hamburgerBtn = DOHamburgerButton()//显示节点按钮
     let buttonItem = Int(UIScreen.mainScreen().bounds.size.width / 60)//每行显示的节点数
-    let nodeListNumber = 17
+    var nodeListNumber = 4
     var topicContentArray = [TopicInfo]()
+    var mineNodeArray = [NodeInfo]()
+    var currentNum = 0
     @IBOutlet weak var nodeHeight: NSLayoutConstraint!//下边的高度
     @IBOutlet weak var nodeCollectionView: UICollectionView!
     @IBOutlet weak var topicTableView: UITableView!
@@ -25,7 +27,20 @@ class HomeViewController: UIViewController {
     }
     //MARK:- 初始化控件
     func initItem() {
+        //node列表
+        mineNodeArray = HomeViewModel.shareHomeViewModel().initMineNode()
+        nodeListNumber = mineNodeArray.count + 4
+        AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
+            (mineNodeContentArr) in
+            self.mineNodeArray = mineNodeContentArr
+            self.nodeListNumber = self.mineNodeArray.count + 4
+            self.nodeCollectionView.reloadData()
+            self.currentNum = 0
+        }
         nodeCollectionView.registerClass(NodeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "nodeCell")
+        //topic列表
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
         HomeViewModel.shareHomeViewModel().findHotTopics() {
             (contentArray: [TopicInfo]?) in
             if let contentArray = contentArray where contentArray.count > 0 {
@@ -101,18 +116,22 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 cell.contentView.addSubview(moreLable)
             }
         }else {
-            if cell.contentView.subviews.count == 0 {
+            if cell.contentView.subviews.count == 0 && nodeListNumber > indexPath.row {
                 let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
+                nodeLable.tag = currentNum
                 nodeLable.textAlignment = NSTextAlignment.Center
                 nodeLable.font = UIFont.systemFontOfSize(12)
-                nodeLable.text = "潇洒的撒旦"
+                nodeLable.text = mineNodeArray[currentNum].title
                 cell.contentView.addSubview(nodeLable)
+                currentNum++
             }
         }
         return cell
     }
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 {//热点
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            PKHUD.sharedHUD.show()
             HomeViewModel.shareHomeViewModel().findHotTopics() {
                 (contentArray: [TopicInfo]?) in
                 if let contentArray = contentArray where contentArray.count > 0 {
@@ -122,6 +141,8 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 }
             }
         }else if indexPath.row == 1 {//全部
+            PKHUD.sharedHUD.contentView = PKHUDProgressView()
+            PKHUD.sharedHUD.show()
             HomeViewModel.shareHomeViewModel().findLastestTopics() {
                 (contentArray: [TopicInfo]?) in
                 if let contentArray = contentArray where contentArray.count > 0 {
@@ -140,11 +161,23 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 self.title = titleStr
             }
             navigationController?.pushViewController(allNodeViewController, animated: true)
-        }else {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("nodeCell", forIndexPath: indexPath) as! NodeCollectionViewCell
-            initTitle(cell, index: indexPath.row)
+        }else {//我的节点
+            if nodeListNumber > indexPath.row {
+                let cell = collectionView.cellForItemAtIndexPath(indexPath) as! NodeCollectionViewCell
+                if let tittleLable = cell.contentView.subviews[0] as? UILabel where mineNodeArray.count > tittleLable.tag {
+                    let id = mineNodeArray[tittleLable.tag].id
+                    PKHUD.sharedHUD.contentView = PKHUDProgressView()
+                    PKHUD.sharedHUD.show()
+                    HomeViewModel.shareHomeViewModel().findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
+                        (contentArray: [TopicInfo]?) in
+                        self.topicContentArray = contentArray!
+                        self.topicTableView.reloadData()
+                        self.title = tittleLable.text
+                    })
+                }
+            }
         }
-        showOrHideNode(hamburgerBtn)
+        hideNode(hamburgerBtn)
     }
     func showOrHideNode(sender: DOHamburgerButton) {
         if self.nodeHeight.constant == 40 {//展开
@@ -156,13 +189,16 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 self.view.layoutIfNeeded()
             })
         }else{//收缩
-            sender.deselect()
-            UIView.animateWithDuration(0.2, animations: {
-                () in
-                self.nodeHeight.constant = 40
-                self.view.layoutIfNeeded()
-            })
+            hideNode(sender)
         }
+    }
+    func hideNode(sender: DOHamburgerButton) {
+        sender.deselect()
+        UIView.animateWithDuration(0.2, animations: {
+            () in
+            self.nodeHeight.constant = 40
+            self.view.layoutIfNeeded()
+        })
     }
 }
 //MARK:- topic表代理

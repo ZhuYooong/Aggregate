@@ -16,7 +16,7 @@ class AllNodeViewModel: NSObject {
         return allNodeViewModel
     }
     //MARK:-网络请求
-    func findAllNode(initData: (contentArray: [NodeInfo]?)->Void) {//取所有节点
+    func findAllNode(view: UIView, initData: (contentArray: [NodeInfo]?)->Void) {//取所有节点
         NetDataManager.shareNetDataManager().findAllNode(){
             (data) in
             var allNodes = [NodeInfo]()
@@ -37,6 +37,18 @@ class AllNodeViewModel: NSObject {
                 }
             }
             initData(contentArray: allNodes)
+        }
+    }
+    //MARK:-数据逻辑
+    func findMineNode(mineNode: ([NodeInfo]) -> Void) {//我的节点
+        let fetchRequest = NSFetchRequest(entityName: "TopicInfo")
+        do {
+            let fetchResults = try context.executeFetchRequest(fetchRequest) as? [NodeInfo]
+            if let fetchResults = fetchResults where fetchResults.count > 0 {
+                mineNode(fetchResults)
+            }
+        } catch let error1 as NSError {
+            print(error1)
         }
     }
 }

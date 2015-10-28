@@ -169,4 +169,29 @@ class HomeViewModel: NSObject {
             }
         }
     }
+    func initMineNode() -> [NodeInfo] {//最初我的节点
+        let node1 = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
+        node1.title = "科技"
+        node1.id = "445"
+        let node2 = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
+        node2.title = "分享创造"
+        node2.id = "17"
+        let node3 = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
+        node3.title = "问与答"
+        node3.id = "12"
+        let node4 = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
+        node4.title = "apple"
+        node4.id = "184"
+        let node5 = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
+        node5.title = "酷工作"
+        node5.id = "43"
+        let node6 = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
+        node6.title = "优惠信息"
+        node6.id = "747"
+        let node7 = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
+        node7.title = "分享发现"
+        node7.id = "16"
+        let nodeArray = [node1, node2, node3, node4, node5, node6, node7]
+        return nodeArray
+    }
 }

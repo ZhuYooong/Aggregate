@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import PKHUD
 typealias callbackfunc = ([NodeInfo]?, [TopicInfo]?, String?) ->Void
 class NodeListView: UIView {
     var totalHeight: Float = 0
@@ -43,18 +44,13 @@ class NodeListView: UIView {
                 tagBtn.layer.borderWidth = 0.3
                 tagBtn.clipsToBounds = true
                 if canTouch {//显示自己的节点
-                    let applicationDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    let managedObjectContext = applicationDelegate.managedObjectContext
-                    let fetchRequest = NSFetchRequest(entityName: "TopicInfo")
-                    do {
-                        let fetchResults = try managedObjectContext.executeFetchRequest(fetchRequest) as! [TopicInfo]
-                        for mineNode in fetchResults {
+                    AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
+                        (mineNodeContentArr) in
+                        for mineNode in mineNodeContentArr {
                             if mineNode.id == value.id {
-                                tagBtnClick(tagBtn)
+                                self.tagBtnClick(tagBtn)
                             }
                         }
-                    } catch let error1 as NSError {
-                        print(error1)
                     }
                 }
                 if let tittle = value.title {
@@ -99,6 +95,8 @@ class NodeListView: UIView {
             didSelectItems()
         }else {
             if let id = tagArray?[sender.tag - 1000].id {
+                PKHUD.sharedHUD.contentView = PKHUDProgressView()
+                PKHUD.sharedHUD.show()
                 HomeViewModel.shareHomeViewModel().findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
                     (contentArray: [TopicInfo]?) in
                     self.didselectItem!(nil, contentArray, sender.titleLabel?.text)

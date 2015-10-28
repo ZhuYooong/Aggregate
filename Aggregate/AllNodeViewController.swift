@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 typealias findTopicfunc = ([TopicInfo], String) ->Void
 class AllNodeViewController: UIViewController {
     @IBOutlet weak var scrollViewHeaderHeight: NSLayoutConstraint!
@@ -16,6 +17,7 @@ class AllNodeViewController: UIViewController {
     var allNodeView: NodeListView?
     var allNodeContentArray = [NodeInfo]()
     var didselectItem = findTopicfunc?()//返回节点内容
+    var selectNodeContentArray = [NodeInfo]()
     override func viewDidLoad() {
         super.viewDidLoad()
         initItem()
@@ -34,7 +36,9 @@ class AllNodeViewController: UIViewController {
         }
     }
     func initData() {//初始化数据
-        AllNodeViewModel.shareAllNodeViewModel().findAllNode() {
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
+        AllNodeViewModel.shareAllNodeViewModel().findAllNode(view) {
             (contentArray: [NodeInfo]?) in
             self.creatNodeView(contentArray)
         }

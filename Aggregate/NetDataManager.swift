@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import PKHUD
 class NetDataManager: NSObject {
     static let netDataManager: NetDataManager = NetDataManager()
     static func shareNetDataManager() -> NetDataManager {
@@ -23,8 +24,10 @@ class NetDataManager: NSObject {
             switch response.result {
             case .Success:
                 NetData(data: response.data)
-            case .Failure(let error):
-                print(error)
+                PKHUD.sharedHUD.hide(afterDelay: 0)
+            case .Failure( _):
+                PKHUD.sharedHUD.contentView = PKHUDErrorView()
+                PKHUD.sharedHUD.hide(afterDelay: 1.0);
             }
         }
     }
