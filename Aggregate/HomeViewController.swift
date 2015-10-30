@@ -239,7 +239,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return 77
         }
     }
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if segue.identifier == "topicDetailSegue" {
+//            let topicDetail = segue.destinationViewController as! TopicDetailTableViewController
+//            topicDetail.topicId = topicTableView.ce
+//        }
+//    }
 }

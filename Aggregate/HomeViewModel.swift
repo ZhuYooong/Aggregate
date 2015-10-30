@@ -56,7 +56,7 @@ class HomeViewModel: NSObject {
     func findLastestTopics(initData: (contentArray: [TopicInfo]?)->Void) {//取全部主题
         NetDataManager.shareNetDataManager().findLatestTopics(){
             (data) in
-            var hotTopics = [TopicInfo]()
+            var allTopics = [TopicInfo]()
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
@@ -84,16 +84,16 @@ class HomeViewModel: NSObject {
                     topic.created = subJson["created"].stringValue
                     topic.last_modified = subJson["last_modified"].stringValue
                     topic.last_touched = subJson["last_touched"].stringValue
-                    hotTopics.append(topic)
+                    allTopics.append(topic)
                 }
             }
-            initData(contentArray: hotTopics)
+            initData(contentArray: allTopics)
         }
     }
     func findNodeTopics(username: String?, nodeId: String?, nodeName: String?, initData: (contentArray: [TopicInfo]?)->Void) {//根据提供信息取主题
         NetDataManager.shareNetDataManager().findTopics(username, nodeId: nodeId, nodeName: nodeName){
             (data) in
-            var hotTopics = [TopicInfo]()
+            var thisTopics = [TopicInfo]()
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
@@ -121,10 +121,10 @@ class HomeViewModel: NSObject {
                     topic.created = subJson["created"].stringValue
                     topic.last_modified = subJson["last_modified"].stringValue
                     topic.last_touched = subJson["last_touched"].stringValue
-                    hotTopics.append(topic)
+                    thisTopics.append(topic)
                 }
             }
-            initData(contentArray: hotTopics)
+            initData(contentArray: thisTopics)
         }
     }
     //MARK:-数据逻辑

@@ -79,7 +79,7 @@ extension NetDataManager {
         if let URLString = URLString {
             GETRequest(URLString, NetData: NetData)
         }
-    }
+    }  
     //取主题回复
     func findReplies(topicId: String, page: String?, NetData: (data: NSData?)->Void) {
         var URLString: String?

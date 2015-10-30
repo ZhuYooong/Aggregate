@@ -43,7 +43,7 @@ class NodeListView: UIView {
                 tagBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
                 tagBtn.layer.borderWidth = 0.3
                 tagBtn.clipsToBounds = true
-                if canTouch {//显示自己的节点
+                if canTouch && canCompiled {//显示自己的节点
                     AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
                         (mineNodeContentArr) in
                         for mineNode in mineNodeContentArr {
@@ -84,13 +84,19 @@ class NodeListView: UIView {
         tempFrame.size.height = hight
         view.frame = tempFrame
     }
-    func tagBtnClick(sender: UIButton) {
+    func tagBtnClick(sender: UIButton) {//node点击事件
         if canCompiled == true {//编辑节点
             sender.selected = !sender.selected
-            if sender.selected == true {
-                sender.backgroundColor = UIColor.orangeColor()
-            }else if sender.selected == false {
-                sender.backgroundColor = UIColor.whiteColor()
+            if sender.selected == true {//插入
+                if let mineNode = tagArray?[sender.tag - 1000] {
+                    AllNodeViewModel.shareAllNodeViewModel().insertMineNode(mineNode)
+                    sender.backgroundColor = UIColor.orangeColor()
+                }
+            }else if sender.selected == false {//删除
+                if let id = tagArray?[sender.tag - 1000].id {
+                    AllNodeViewModel.shareAllNodeViewModel().removeMineNode(id)
+                    sender.backgroundColor = UIColor.whiteColor()
+                }
             }
             didSelectItems()
         }else {
