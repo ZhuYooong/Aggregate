@@ -69,19 +69,26 @@ class AllNodeViewModel: NSObject {
         }
     }
     func insertMineNode(insertNode: NodeInfo?) {//插入我的节点
-        if let insertNode = insertNode {
-            let entity = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: context) as! NodeInfo
-            entity.id = insertNode.id
-            entity.name = insertNode.name
-            entity.url = insertNode.url
-            entity.title = insertNode.title
-            entity.title_alternative = insertNode.title_alternative
-            entity.topics = insertNode.topics
-            entity.header = insertNode.header
-            entity.footer = insertNode.footer
-            entity.created = insertNode.created
+        if let insertNode = insertNode, id = insertNode.id {
+            let fetchRequest = NSFetchRequest(entityName: "NodeInfo")
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id)
             do {
-                try context.save()
+                let fetchResults = try context.executeFetchRequest(fetchRequest) as? [NodeInfo]
+                if let fetchResults = fetchResults where fetchResults.count > 0 {
+                    return
+                }else {
+                    let entity = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: context) as! NodeInfo
+                    entity.id = insertNode.id
+                    entity.name = insertNode.name
+                    entity.url = insertNode.url
+                    entity.title = insertNode.title
+                    entity.title_alternative = insertNode.title_alternative
+                    entity.topics = insertNode.topics
+                    entity.header = insertNode.header
+                    entity.footer = insertNode.footer
+                    entity.created = insertNode.created
+                    try context.save()
+                }
             } catch let error1 as NSError {
                 print(error1)
             }

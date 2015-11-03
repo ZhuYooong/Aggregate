@@ -16,31 +16,31 @@ class TopicDetailViewModel: NSObject {
         return topicDetailViewModel
     }
     //MARK:-网络请求
-    func findTopicsInfo(topicId: String, initData: (contentArray: [TopicInfo]?)->Void) {//取主题信息
+    func findTopicsInfo(topicId: String, initData: (contentArray: [Topic]?)->Void) {//取主题信息
         NetDataManager.shareNetDataManager().findTopicsInfo(topicId) {
             (data) in
-            var topicInfos = [TopicInfo]()
+            var topicInfos = [Topic]()
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
-                    let topic = NSEntityDescription.insertNewObjectForEntityForName("TopicInfo", inManagedObjectContext: self.context) as! TopicInfo
+//                    let topic = Topic(id: <#T##String?#>, title: <#T##String?#>, url: <#T##String?#>, content: <#T##String?#>, content_rendered: <#T##String?#>, replies: <#T##String?#>, member_id: <#T##String?#>, node_id: <#T##String?#>, created: <#T##String?#>, last_modified: <#T##String?#>, last_touched: <#T##String?#>, member_username: <#T##String?#>, member_tagline: <#T##String?#>, member_avatar_mini: <#T##String?#>, member_avatar_normal: <#T##String?#>, member_avatar_large: <#T##String?#>, node_name: <#T##String?#>, node_title: <#T##String?#>, node_url: <#T##String?#>, node_topics: <#T##String?#>, node_avatar_mini: <#T##String?#>, node_avatar_normal: <#T##String?#>, node_avatar_large: <#T##String?#>))
                     
-                    topicInfos.append(topic)
+//                    topicInfos.append(topic)
                 }
             }
             initData(contentArray: topicInfos)
         }
     }
-    func findReplies(topicId: String, page: String?, initData: (contentArray: [RepliesInfo]?)->Void) {//取主题回复
+    func findReplies(topicId: String, page: String?, initData: (contentArray: [Replies]?)->Void) {//取主题回复
         NetDataManager.shareNetDataManager().findReplies(topicId, page: page) {
             (data) in
-            var replies = [RepliesInfo]()
+            var replies = [Replies]()
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
-                    let reply = NSEntityDescription.insertNewObjectForEntityForName("RepliesInfo", inManagedObjectContext: self.context) as! RepliesInfo
-                    
-                    replies.append(reply)
+//                    let reply = Replies(id: <#T##String?#>, thanks: <#T##String?#>, content: <#T##String?#>, content_rendered: <#T##String?#>, member_id: <#T##String?#>, member_username: <#T##String?#>, member_tagline: <#T##String?#>, member_avatar_mini: <#T##String?#>, member_avatar_normal: <#T##String?#>, member_avatar_large: <#T##String?#>, created: <#T##String?#>, last_modified: <#T##String?#>)
+//                    
+//                    replies.append(reply)
                 }
             }
             initData(contentArray: replies)
