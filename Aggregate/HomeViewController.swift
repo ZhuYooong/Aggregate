@@ -14,35 +14,45 @@ class HomeViewController: UIViewController {
     let hamburgerBtn = DOHamburgerButton()//显示节点按钮
     let buttonItem = Int(UIScreen.mainScreen().bounds.size.width / 60)//每行显示的节点数
     var nodeListNumber = 4
-    var topicContentArray = [TopicInfo]()
-    var mineNodeArray = [NodeInfo]()
+    var topicContentArray = [Topic]()
+    var mineNodeArray = [Node]()
     var currentNum = 0
+    var isEdit = true//是否刷新节点
     @IBOutlet weak var nodeHeight: NSLayoutConstraint!//下边的高度
     @IBOutlet weak var nodeCollectionView: UICollectionView!
     @IBOutlet weak var topicTableView: UITableView!
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        initNodeData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         aboutMenuController()
         initItem()
     }
     //MARK:- 初始化控件
+    func initNodeData() {
+        if isEdit {
+            mineNodeArray = HomeViewModel.shareHomeViewModel().initMineNode()
+            nodeListNumber = mineNodeArray.count + 4
+            AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
+                (mineNodeContentArr) in
+                self.mineNodeArray = mineNodeContentArr
+                self.nodeListNumber = self.mineNodeArray.count + 4
+                self.nodeCollectionView.reloadData()
+            }
+            self.currentNum = 0
+            isEdit = false
+        }
+    }
     func initItem() {
         //node列表
-        mineNodeArray = HomeViewModel.shareHomeViewModel().initMineNode()
-        nodeListNumber = mineNodeArray.count + 4
-        AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
-            (mineNodeContentArr) in
-            self.mineNodeArray = mineNodeContentArr
-            self.nodeListNumber = self.mineNodeArray.count + 4
-            self.nodeCollectionView.reloadData()
-            self.currentNum = 0
-        }
         nodeCollectionView.registerClass(NodeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "nodeCell")
         //topic列表
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
         HomeViewModel.shareHomeViewModel().findHotTopics() {
-            (contentArray: [TopicInfo]?) in
+            (contentArray: [Topic]?) in
             if let contentArray = contentArray where contentArray.count > 0 {
                 self.title = "今日热议"
                 self.topicContentArray = contentArray
@@ -85,38 +95,35 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("nodeCell", forIndexPath: indexPath) as! NodeCollectionViewCell
+        for view in cell.contentView.subviews {
+            view.removeFromSuperview()
+        }
         if indexPath.row == 0 {
-            if cell.contentView.subviews.count == 0 {
-                let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
-                nodeLable.textAlignment = NSTextAlignment.Center
-                nodeLable.font = UIFont.systemFontOfSize(12)
-                nodeLable.text = "今日热议"
-                cell.contentView.addSubview(nodeLable)
-            }
+            let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
+            nodeLable.textAlignment = NSTextAlignment.Center
+            nodeLable.font = UIFont.systemFontOfSize(12)
+            nodeLable.text = "今日热议"
+            cell.contentView.addSubview(nodeLable)
         }else if indexPath.row == 1 {
-            if cell.contentView.subviews.count == 0 {
-                let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
-                nodeLable.textAlignment = NSTextAlignment.Center
-                nodeLable.font = UIFont.systemFontOfSize(12)
-                nodeLable.text = "全部"
-                cell.contentView.addSubview(nodeLable)
-            }
-        }else if indexPath.row == buttonItem - 1 {
+            let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
+            nodeLable.textAlignment = NSTextAlignment.Center
+            nodeLable.font = UIFont.systemFontOfSize(12)
+            nodeLable.text = "全部"
+            cell.contentView.addSubview(nodeLable)
+        }else if indexPath.row == buttonItem - 1 && buttonItem != nodeListNumber {
             hamburgerBtn.frame = CGRectMake(0, -2, 60, 40)
             hamburgerBtn.color = UIColor.redColor()
             hamburgerBtn.titleLabel?.font = UIFont.systemFontOfSize(12)
             hamburgerBtn.addTarget(self, action: "showOrHideNode:", forControlEvents: UIControlEvents.TouchUpInside)
             cell.contentView.addSubview(hamburgerBtn)
         }else if indexPath.row == nodeListNumber - 1 {
-            if cell.contentView.subviews.count == 0 {
-                let moreLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
-                moreLable.textAlignment = NSTextAlignment.Center
-                moreLable.font = UIFont.systemFontOfSize(12)
-                moreLable.text = "全部节点……"
-                cell.contentView.addSubview(moreLable)
-            }
+            let moreLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
+            moreLable.textAlignment = NSTextAlignment.Center
+            moreLable.font = UIFont.systemFontOfSize(12)
+            moreLable.text = "全部节点……"
+            cell.contentView.addSubview(moreLable)
         }else {
-            if cell.contentView.subviews.count == 0 && nodeListNumber > indexPath.row {
+            if nodeListNumber > indexPath.row && mineNodeArray.count > currentNum {
                 let nodeLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
                 nodeLable.tag = currentNum
                 nodeLable.textAlignment = NSTextAlignment.Center
@@ -133,7 +140,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
             PKHUD.sharedHUD.show()
             HomeViewModel.shareHomeViewModel().findHotTopics() {
-                (contentArray: [TopicInfo]?) in
+                (contentArray: [Topic]?) in
                 if let contentArray = contentArray where contentArray.count > 0 {
                     self.topicContentArray = contentArray
                     self.topicTableView.reloadData()
@@ -144,21 +151,24 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
             PKHUD.sharedHUD.show()
             HomeViewModel.shareHomeViewModel().findLastestTopics() {
-                (contentArray: [TopicInfo]?) in
+                (contentArray: [Topic]?) in
                 if let contentArray = contentArray where contentArray.count > 0 {
                     self.topicContentArray = contentArray
                     self.topicTableView.reloadData()
                     self.title = "全部"
                 }
             }
-        }else if indexPath.row == buttonItem - 1 {
+        }else if indexPath.row == buttonItem - 1 && buttonItem != nodeListNumber {
         }else if indexPath.row == nodeListNumber - 1 {//跳转全部节点
             let allNodeViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AllNodeID") as! AllNodeViewController
             allNodeViewController.didselectItem = {
-                (array: [TopicInfo], titleStr: String) in
-                self.topicContentArray = array
-                self.topicTableView.reloadData()
-                self.title = titleStr
+                (array: [Topic]?, titleStr: String?, isEdit: Bool) in
+                if let array = array, titleStr = titleStr {
+                    self.topicContentArray = array
+                    self.topicTableView.reloadData()
+                    self.title = titleStr
+                }
+                self.isEdit = isEdit
             }
             navigationController?.pushViewController(allNodeViewController, animated: true)
         }else {//我的节点
@@ -169,7 +179,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                     PKHUD.sharedHUD.contentView = PKHUDProgressView()
                     PKHUD.sharedHUD.show()
                     HomeViewModel.shareHomeViewModel().findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
-                        (contentArray: [TopicInfo]?) in
+                        (contentArray: [Topic]?) in
                         self.topicContentArray = contentArray!
                         self.topicTableView.reloadData()
                         self.title = tittleLable.text
@@ -209,6 +219,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("topicCell", forIndexPath: indexPath) as! TopicTableViewCell
         if topicContentArray.count > indexPath.row {
+            if let id = Int(topicContentArray[indexPath.row].id!) {
+                cell.tag = id
+            }
             cell.topicContent.text = topicContentArray[indexPath.row].title
             cell.topicContentHeight.constant = HomeViewModel.shareHomeViewModel().initHeight(topicContentArray, index: indexPath.row)
             cell.userNameLable.text = topicContentArray[indexPath.row].member_username
@@ -239,10 +252,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return 77
         }
     }
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "topicDetailSegue" {
-//            let topicDetail = segue.destinationViewController as! TopicDetailTableViewController
-//            topicDetail.topicId = topicTableView.ce
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let cell = sender as? UITableViewCell where segue.identifier == "topicDetailSegue" {
+            let topicDetail = segue.destinationViewController as! TopicDetailTableViewController
+            topicDetail.topicId = "\(cell.tag)"
+        }
+    }
 }

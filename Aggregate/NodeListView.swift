@@ -9,18 +9,18 @@
 import UIKit
 import CoreData
 import PKHUD
-typealias callbackfunc = ([NodeInfo]?, [TopicInfo]?, String?) ->Void
+typealias callbackfunc = ([Node]?, [Topic]?, String?) ->Void
 class NodeListView: UIView {
     var totalHeight: Float = 0
     var previousFrame: CGRect?
-    var tagArray = [NodeInfo]?()
+    var tagArray = [Node]?()
     var canCompiled = false //是否需要编辑
     var didselectItem = callbackfunc?()//回调统计选中tag
-    func setTagWithTagArray(array: [NodeInfo]?, theBackgroundColor: UIColor?, signalTagColor: UIColor?, canTouch: Bool){
+    func setTagWithTagArray(array: [Node]?, theBackgroundColor: UIColor?, signalTagColor: UIColor?, canTouch: Bool){
         previousFrame = CGRectZero
         totalHeight = 0
         if let array = array {
-            tagArray = [NodeInfo](array)
+            tagArray = [Node](array)
             for view in self.subviews {
                 view.removeFromSuperview()
             }
@@ -43,16 +43,6 @@ class NodeListView: UIView {
                 tagBtn.layer.borderColor = UIColor.darkGrayColor().CGColor
                 tagBtn.layer.borderWidth = 0.3
                 tagBtn.clipsToBounds = true
-                if canTouch && canCompiled {//显示自己的节点
-                    AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
-                        (mineNodeContentArr) in
-                        for mineNode in mineNodeContentArr {
-                            if mineNode.id == value.id {
-                                self.tagBtnClick(tagBtn)
-                            }
-                        }
-                    }
-                }
                 if let tittle = value.title {
                     let stringSize = tittle.boundingRectWithSize(CGSizeMake(2000, 40), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(15)], context: nil)
                     let newWidth = stringSize.width + 7 * 3
@@ -78,11 +68,25 @@ class NodeListView: UIView {
             self.backgroundColor = UIColor.whiteColor()
         }
     }
-    //MARK:- 改变控件高度
-    func setViewHeight(view: UIView, andHeight hight:CGFloat) {
+    func setViewHeight(view: UIView, andHeight hight:CGFloat) {//改变节点高度
         var tempFrame = view.frame
         tempFrame.size.height = hight
         view.frame = tempFrame
+    }
+    //MARK:- 节点点击事件
+    func editMineNode() {//显示自己的节点
+        AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
+            (mineNodeContentArr) in
+            for mineNode in mineNodeContentArr {
+                for view in self.subviews {
+                    if let temBtn: UIButton = (view as? UIButton) where temBtn.selected == false {
+                        if let id = self.tagArray?[temBtn.tag - 1000].id where id == mineNode.id {
+                            self.tagBtnClick(temBtn)
+                        }
+                    }
+                }
+            }
+        }
     }
     func tagBtnClick(sender: UIButton) {//node点击事件
         if canCompiled == true {//编辑节点
@@ -104,14 +108,14 @@ class NodeListView: UIView {
                 PKHUD.sharedHUD.contentView = PKHUDProgressView()
                 PKHUD.sharedHUD.show()
                 HomeViewModel.shareHomeViewModel().findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
-                    (contentArray: [TopicInfo]?) in
+                    (contentArray: [Topic]?) in
                     self.didselectItem!(nil, contentArray, sender.titleLabel?.text)
                 })
             }
         }
     }
     func didSelectItems() {
-        var temArray = [NodeInfo]()
+        var temArray = [Node]()
         for view in self.subviews {
             if let temBtn: UIButton = (view as? UIButton) where temBtn.selected == true {
                 if let temStr = tagArray?[temBtn.tag - 1000] {

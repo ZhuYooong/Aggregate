@@ -23,9 +23,8 @@ class TopicDetailViewModel: NSObject {
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
-//                    let topic = Topic(id: <#T##String?#>, title: <#T##String?#>, url: <#T##String?#>, content: <#T##String?#>, content_rendered: <#T##String?#>, replies: <#T##String?#>, member_id: <#T##String?#>, node_id: <#T##String?#>, created: <#T##String?#>, last_modified: <#T##String?#>, last_touched: <#T##String?#>, member_username: <#T##String?#>, member_tagline: <#T##String?#>, member_avatar_mini: <#T##String?#>, member_avatar_normal: <#T##String?#>, member_avatar_large: <#T##String?#>, node_name: <#T##String?#>, node_title: <#T##String?#>, node_url: <#T##String?#>, node_topics: <#T##String?#>, node_avatar_mini: <#T##String?#>, node_avatar_normal: <#T##String?#>, node_avatar_large: <#T##String?#>))
-                    
-//                    topicInfos.append(topic)
+                    let topic = Topic(id: subJson["id"].stringValue, title: subJson["title"].stringValue, url: subJson["url"].stringValue, content: subJson["content"].stringValue, content_rendered: subJson["content_rendered"].stringValue, replies: subJson["replies"].stringValue, member_id: subJson["member"]["id"].stringValue, node_id: subJson["node"]["id"].stringValue, created: subJson["created"].stringValue, last_modified: subJson["last_modified"].stringValue, last_touched: subJson["last_touched"].stringValue, member_username: subJson["member"]["username"].stringValue, member_tagline: subJson["member"]["tagline"].stringValue, member_avatar_mini: subJson["member"]["avatar_mini"].stringValue, member_avatar_normal: subJson["member"]["avatar_normal"].stringValue, member_avatar_large: subJson["member"]["avatar_large"].stringValue, node_name: subJson["node"]["name"].stringValue, node_title: subJson["node"]["title"].stringValue, node_url: subJson["node"]["url"].stringValue, node_topics: subJson["node"]["topics"].stringValue, node_avatar_mini: subJson["node"]["avatar_mini"].stringValue, node_avatar_normal: subJson["node"]["avatar_normal"].stringValue, node_avatar_large: subJson["node"]["avatar_large"].stringValue)
+                    topicInfos.append(topic)
                 }
             }
             initData(contentArray: topicInfos)
@@ -38,9 +37,8 @@ class TopicDetailViewModel: NSObject {
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
-//                    let reply = Replies(id: <#T##String?#>, thanks: <#T##String?#>, content: <#T##String?#>, content_rendered: <#T##String?#>, member_id: <#T##String?#>, member_username: <#T##String?#>, member_tagline: <#T##String?#>, member_avatar_mini: <#T##String?#>, member_avatar_normal: <#T##String?#>, member_avatar_large: <#T##String?#>, created: <#T##String?#>, last_modified: <#T##String?#>)
-//                    
-//                    replies.append(reply)
+                    let reply = Replies(id: subJson["id"].stringValue, thanks: subJson["thanks"].stringValue, content: subJson["content"].stringValue, content_rendered: subJson["content_rendered"].stringValue, member_id: subJson["member"]["id"].stringValue, member_username: subJson["member"]["username"].stringValue, member_tagline: subJson["member"]["tagline"].stringValue, member_avatar_mini: subJson["member"]["avatar_mini"].stringValue, member_avatar_normal: subJson["member"]["avatar_normal"].stringValue, member_avatar_large: subJson["member"]["avatar_large"].stringValue, created: subJson["created"].stringValue, last_modified: subJson["last_modified"].stringValue)
+                    replies.append(reply)
                 }
             }
             initData(contentArray: replies)

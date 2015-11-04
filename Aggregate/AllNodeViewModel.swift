@@ -16,23 +16,14 @@ class AllNodeViewModel: NSObject {
         return allNodeViewModel
     }
     //MARK:-网络请求
-    func findAllNode(initData: (contentArray: [NodeInfo]?)->Void) {//取所有节点
+    func findAllNode(initData: (contentArray: [Node]?)->Void) {//取所有节点
         NetDataManager.shareNetDataManager().findAllNode(){
             (data) in
-            var allNodes = [NodeInfo]()
+            var allNodes = [Node]()
             if let data = data {
                 let json = JSON(data: data)
                 for subJson in json.arrayValue {
-                    let allNode = NSEntityDescription.insertNewObjectForEntityForName("NodeInfo", inManagedObjectContext: self.context) as! NodeInfo
-                    allNode.id = subJson["id"].stringValue
-                    allNode.name = subJson["name"].stringValue
-                    allNode.url = subJson["url"].stringValue
-                    allNode.title = subJson["title"].stringValue
-                    allNode.title_alternative = subJson["title_alternative"].stringValue
-                    allNode.topics = subJson["topics"].stringValue
-                    allNode.header = subJson["header"].stringValue
-                    allNode.footer = subJson["footer"].stringValue
-                    allNode.created = subJson["created"].stringValue
+                    let allNode = Node(id: subJson["id"].stringValue, name: subJson["name"].stringValue, url: subJson["url"].stringValue, title: subJson["title"].stringValue, title_alternative: subJson["title_alternative"].stringValue, topics: subJson["topics"].stringValue, header: subJson["header"].stringValue, footer: subJson["footer"].stringValue, created: subJson["created"].stringValue)
                     allNodes.append(allNode)
                 }
             }
@@ -40,12 +31,17 @@ class AllNodeViewModel: NSObject {
         }
     }
     //MARK:-数据逻辑
-    func findMineNode(mineNode: ([NodeInfo]) -> Void) {//我的节点
+    func findMineNode(mineNode: ([Node]) -> Void) {//我的节点
         let fetchRequest = NSFetchRequest(entityName: "NodeInfo")
         do {
             let fetchResults = try context.executeFetchRequest(fetchRequest) as? [NodeInfo]
             if let fetchResults = fetchResults where fetchResults.count > 0 {
-                mineNode(fetchResults)
+                var mineNodes = [Node]()
+                for nodeItem in fetchResults {
+                    let node = Node(id: nodeItem.id, name: nodeItem.name, url: nodeItem.url, title: nodeItem.title, title_alternative: nodeItem.title_alternative, topics: nodeItem.topics, header: nodeItem.header, footer: nodeItem.footer, created: nodeItem.created)
+                    mineNodes.append(node)
+                }
+                mineNode(mineNodes)
             }
         } catch let error1 as NSError {
             print(error1)
@@ -59,7 +55,7 @@ class AllNodeViewModel: NSObject {
                 let fetchResults = try context.executeFetchRequest(fetchRequest) as? [NodeInfo]
                 if let fetchResults = fetchResults where fetchResults.count > 0 {
                     for mineNode in fetchResults {
-                        context.delete(mineNode)
+                        context.deleteObject(mineNode)
                         try context.save()
                     }
                 }
@@ -68,7 +64,7 @@ class AllNodeViewModel: NSObject {
             }
         }
     }
-    func insertMineNode(insertNode: NodeInfo?) {//插入我的节点
+    func insertMineNode(insertNode: Node?) {//插入我的节点
         if let insertNode = insertNode, id = insertNode.id {
             let fetchRequest = NSFetchRequest(entityName: "NodeInfo")
             fetchRequest.predicate = NSPredicate(format: "id == %@", id)

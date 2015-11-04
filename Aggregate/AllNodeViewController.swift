@@ -8,7 +8,7 @@
 
 import UIKit
 import PKHUD
-typealias findTopicfunc = ([TopicInfo], String) ->Void
+typealias findTopicfunc = ([Topic]?, String?, Bool) ->Void
 class AllNodeViewController: UIViewController {
     @IBOutlet weak var scrollViewHeaderHeight: NSLayoutConstraint!
     @IBOutlet weak var selectNodeView: NodeListView!
@@ -30,25 +30,26 @@ class AllNodeViewController: UIViewController {
         if sender.title == "编辑" {
             sender.title = "确定"
             allNodeView?.canCompiled = true
+            allNodeView?.editMineNode()
         }else if sender.title == "确定" {
-            
             navigationController?.popViewControllerAnimated(true)
         }
+        self.didselectItem!(nil, nil, true)
     }
     func initData() {//初始化数据
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
         AllNodeViewModel.shareAllNodeViewModel().findAllNode() {
-            (contentArray: [NodeInfo]?) in
+            (contentArray: [Node]?) in
             self.creatNodeView(contentArray)
         }
     }
-    func creatNodeView(allNodeArray: [NodeInfo]?) {
+    func creatNodeView(allNodeArray: [Node]?) {
         allNodeView = NodeListView()
         allNodeView?.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, allNodeScrollView.frame.size.height)
         allNodeView?.setTagWithTagArray(allNodeArray, theBackgroundColor: nil, signalTagColor: UIColor.whiteColor(), canTouch: true)
         allNodeView?.didselectItem = {
-            (array: [NodeInfo]?, allNodeArray: [TopicInfo]?, tittleStr: String?) in
+            (array: [Node]?, allNodeArray: [Topic]?, tittleStr: String?) in
             if let array = array where self.allNodeView?.canCompiled == true {
                 self.selectNodeView.setTagWithTagArray(array, theBackgroundColor: nil, signalTagColor: UIColor.whiteColor(), canTouch: false)
                 UIView.animateWithDuration(0.1) {
@@ -58,7 +59,7 @@ class AllNodeViewController: UIViewController {
                 }
             }
             if let allNodeArray = allNodeArray where self.allNodeView?.canCompiled == false, let tittleStr = tittleStr {
-                self.didselectItem!(allNodeArray, tittleStr)
+                self.didselectItem!(allNodeArray, tittleStr, false)
                 self.navigationController?.popViewControllerAnimated(true)
             }
         }
