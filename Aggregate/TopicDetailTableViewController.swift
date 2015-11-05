@@ -20,7 +20,6 @@ class TopicDetailTableViewController: UITableViewController {
     @IBOutlet weak var headerContentHeight: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
     var topicId: String?
-    var pageNum = 0//页码
     var repliesArray = [Replies]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +36,13 @@ class TopicDetailTableViewController: UITableViewController {
                     self.initTopicInfo(content)
                 }
             }
-            TopicDetailViewModel.shareTopicDetailViewModel().findReplies(topicId, page: "\(pageNum)") {
+            // 上啦加载更多
+            TopicDetailViewModel.shareTopicDetailViewModel().findReplies(topicId, page: "\(0)") {
                 (contentArray) in
-                self.repliesArray = contentArray!
-                self.tableView.reloadData()
+                if let contentArray = contentArray where contentArray.count > 0 {
+                    self.repliesArray = contentArray
+                    self.tableView.reloadData()
+                }
             }
         }
     }
