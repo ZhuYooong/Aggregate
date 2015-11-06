@@ -36,7 +36,6 @@ class TopicDetailTableViewController: UITableViewController {
                     self.initTopicInfo(content)
                 }
             }
-            // 上啦加载更多
             TopicDetailViewModel.shareTopicDetailViewModel().findReplies(topicId, page: "\(0)") {
                 (contentArray) in
                 if let contentArray = contentArray where contentArray.count > 0 {

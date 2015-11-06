@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 @UIApplicationMain
-
 class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK:- 变量
     var drawersStoryboard: UIStoryboard?
@@ -26,8 +25,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.backgroundColor = UIColor.whiteColor()
+        //MARK:菜单栏
         initItem()
         configureDrawerViewController()
+        //MARK:分享
+        ShareSDK.registerApp("c00530c678b8", activePlatforms: [SSDKPlatformType.TypeSinaWeibo.rawValue, SSDKPlatformType.TypeTencentWeibo.rawValue, SSDKPlatformType.TypeWechat.rawValue, SSDKPlatformType.TypeQQ.rawValue], onImport: { (platform: SSDKPlatformType) -> Void in
+            switch platform {
+            case SSDKPlatformType.TypeWechat:
+                ShareSDKConnector.connectWeChat(WXApi.classForCoder())
+            case SSDKPlatformType.TypeQQ:
+                ShareSDKConnector.connectQQ(QQApiInterface.classForCoder(), tencentOAuthClass: TencentOAuth.classForCoder())
+            default:
+                break
+            }
+            }, onConfiguration: {(platform: SSDKPlatformType, appInfo: NSMutableDictionary!) -> Void in
+                switch platform {
+                case SSDKPlatformType.TypeSinaWeibo:
+                    appInfo.SSDKSetupSinaWeiboByAppKey("", appSecret: "", redirectUri: "http://www.sharesdk.cn", authType: SSDKAuthTypeBoth)
+                case SSDKPlatformType.TypeTencentWeibo:
+                    appInfo.SSDKSetupTencentWeiboByAppKey("", appSecret: "", redirectUri: "http://www.sharesdk.cn")
+                case SSDKPlatformType.TypeWechat:
+                    appInfo.SSDKSetupWeChatByAppId("", appSecret: "")
+                default:
+                    break
+                }
+        })
         window!.rootViewController = drawerViewController
         window!.makeKeyAndVisible()
         return true
@@ -112,4 +134,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
-
