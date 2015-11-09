@@ -71,7 +71,21 @@ class TopicDetailTableViewController: UITableViewController {
         view.layoutIfNeeded()
         self.tableView.reloadData()
     }
-    //MARK:-回复tableView代理
+    //MARK:-跳转用户详情
+    @IBAction func mineUserInfoButtonClick(sender: UIButton) {
+        
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "userInfoSegue" {
+            if let cell = sender as? UITableViewCell {
+                let topicDetail = segue.destinationViewController as! UserInfoViewController
+                topicDetail.userInfoId = "\(cell.tag)"
+            }
+        }
+    }
+}
+//MARK:-回复tableView代理
+extension TopicDetailTableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repliesArray.count
     }
@@ -79,9 +93,12 @@ class TopicDetailTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TopicDetailCell", forIndexPath: indexPath) as! TopicDetailTableViewCell
         if repliesArray.count > indexPath.row {
             if let imageURL = repliesArray[indexPath.row].member_avatar_mini {
-            ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
+                ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
                     cell.memberImageView.image = image
                 })
+            }
+            if let id = Int(repliesArray[indexPath.row].member_id!) {
+                cell.tag = id
             }
             cell.memberNameLable.text = repliesArray[indexPath.row].member_username
             let option = NSStringDrawingOptions.UsesLineFragmentOrigin

@@ -87,6 +87,34 @@ class HomeViewController: UIViewController {
             (UIApplication.sharedApplication().delegate as! AppDelegate).drawerViewController!.toggleDrawerWithSide(JVFloatingDrawerSide.Left, animated: true, completion: nil)
         }
     }
+    //MARK:-节点列表
+    func showOrHideNode(sender: DOHamburgerButton) {
+        if self.nodeHeight.constant == 40 {//展开
+            sender.select()
+            UIView.animateWithDuration(0.2, animations: {
+                () in
+                let count = CGFloat(self.nodeListNumber) / CGFloat(self.buttonItem)
+                self.nodeHeight.constant = 40 * ceil(count)
+                self.view.layoutIfNeeded()
+            })
+        }else{//收缩
+            hideNode(sender)
+        }
+    }
+    func hideNode(sender: DOHamburgerButton) {
+        sender.deselect()
+        UIView.animateWithDuration(0.2, animations: {
+            () in
+            self.nodeHeight.constant = 40
+            self.view.layoutIfNeeded()
+        })
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let cell = sender as? UITableViewCell where segue.identifier == "topicDetailSegue" {
+            let topicDetail = segue.destinationViewController as! TopicDetailTableViewController
+            topicDetail.topicId = "\(cell.tag)"
+        }
+    }
 }
 //MARK:- 节点列表代理
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -189,27 +217,6 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
         hideNode(hamburgerBtn)
     }
-    func showOrHideNode(sender: DOHamburgerButton) {
-        if self.nodeHeight.constant == 40 {//展开
-            sender.select()
-            UIView.animateWithDuration(0.2, animations: {
-                () in
-                let count = CGFloat(self.nodeListNumber) / CGFloat(self.buttonItem)
-                self.nodeHeight.constant = 40 * ceil(count)
-                self.view.layoutIfNeeded()
-            })
-        }else{//收缩
-            hideNode(sender)
-        }
-    }
-    func hideNode(sender: DOHamburgerButton) {
-        sender.deselect()
-        UIView.animateWithDuration(0.2, animations: {
-            () in
-            self.nodeHeight.constant = 40
-            self.view.layoutIfNeeded()
-        })
-    }
 }
 //MARK:- topic表代理
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
@@ -250,12 +257,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return contentHeight + 40
         }else {
             return 77
-        }
-    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let cell = sender as? UITableViewCell where segue.identifier == "topicDetailSegue" {
-            let topicDetail = segue.destinationViewController as! TopicDetailTableViewController
-            topicDetail.topicId = "\(cell.tag)"
         }
     }
 }
