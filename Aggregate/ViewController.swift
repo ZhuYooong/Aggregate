@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         creatTabbedSplit()
     }
-    //MARK:- 创建列表
+    //MARK: - 创建列表
     func creatTabbedSplit() {
         let split: SMTabbedSplitViewController = SMTabbedSplitViewController()
         //V2EX

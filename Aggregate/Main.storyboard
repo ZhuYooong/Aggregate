@@ -209,7 +209,7 @@
         <!--Topic Detail Table View Controller-->
         <scene sceneID="kJZ-bV-xCb">
             <objects>
-                <tableViewController id="0pl-uU-Fyf" customClass="TopicDetailTableViewController" customModule="Aggregate" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TopicDetailId" id="0pl-uU-Fyf" customClass="TopicDetailTableViewController" customModule="Aggregate" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" id="iR1-W4-Q1w">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,10 +423,20 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLR-uW-ihn">
                                 <rect key="frame" x="98" y="101" width="494" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3r-0m-cpe">
+                                <rect key="frame" x="12" y="68" width="162" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="162" id="GaV-uO-fUI"/>
+                                    <constraint firstAttribute="height" constant="82" id="dmJ-2C-W65"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="exitButtonClick:" destination="i1u-aJ-s8m" eventType="touchUpInside" id="HG2-V8-qzr"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="76" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xxU-R7-eBE">
                                 <rect key="frame" x="0.0" y="150" width="600" height="450"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -504,16 +514,19 @@
                             <constraint firstItem="TzY-of-1Vg" firstAttribute="top" secondItem="hzw-ZT-R1D" secondAttribute="bottom" constant="8" id="Hh1-bp-B94"/>
                             <constraint firstItem="FLR-uW-ihn" firstAttribute="leading" secondItem="TzY-of-1Vg" secondAttribute="trailing" constant="8" id="N35-y6-akT"/>
                             <constraint firstItem="FLR-uW-ihn" firstAttribute="trailing" secondItem="Kyh-RG-4k8" secondAttribute="trailing" id="Nan-sN-rSP"/>
+                            <constraint firstItem="c3r-0m-cpe" firstAttribute="top" secondItem="hzw-ZT-R1D" secondAttribute="bottom" constant="4" id="OtU-Wx-xPh"/>
                             <constraint firstItem="FLR-uW-ihn" firstAttribute="bottom" secondItem="TzY-of-1Vg" secondAttribute="bottom" id="PNB-n8-E2x"/>
                             <constraint firstItem="TzY-of-1Vg" firstAttribute="leading" secondItem="wbH-UN-ai2" secondAttribute="leading" constant="20" id="QUC-0Z-HXG"/>
                             <constraint firstItem="xxU-R7-eBE" firstAttribute="top" secondItem="TzY-of-1Vg" secondAttribute="bottom" constant="8" id="Qr0-ug-L84"/>
                             <constraint firstAttribute="trailing" secondItem="xxU-R7-eBE" secondAttribute="trailing" id="Vj8-gm-j8q"/>
                             <constraint firstItem="Kyh-RG-4k8" firstAttribute="top" secondItem="TzY-of-1Vg" secondAttribute="top" id="aKI-NI-sN6"/>
+                            <constraint firstItem="c3r-0m-cpe" firstAttribute="leading" secondItem="wbH-UN-ai2" secondAttribute="leading" constant="12" id="cih-TP-DXU"/>
                             <constraint firstAttribute="trailing" secondItem="Kyh-RG-4k8" secondAttribute="trailing" constant="8" id="eGv-m9-cUj"/>
                             <constraint firstItem="FLR-uW-ihn" firstAttribute="leading" secondItem="Kyh-RG-4k8" secondAttribute="leading" id="pvn-b3-wSC"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="mineTopicTableView" destination="xxU-R7-eBE" id="VaS-91-PMV"/>
                         <outlet property="userDescriptionLable" destination="FLR-uW-ihn" id="j8z-xp-Xza"/>
                         <outlet property="userIconImageView" destination="TzY-of-1Vg" id="wQ1-k2-LuM"/>
                         <outlet property="userNameLable" destination="Kyh-RG-4k8" id="vQF-8e-QAd"/>
@@ -554,11 +567,6 @@
                                     <constraint firstAttribute="height" constant="1" id="iQH-5n-bAH"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oq0-4i-GzD">
-                                <rect key="frame" x="0.0" y="25" width="600" height="575"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FgZ-xn-NZG" customClass="NodeListView" customModule="Aggregate" customModuleProvider="target">
                                 <rect key="frame" x="8" y="49" width="584" height="0.0"/>
                                 <animations/>
@@ -567,6 +575,11 @@
                                     <constraint firstAttribute="height" id="8Tg-je-ygG"/>
                                 </constraints>
                             </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oq0-4i-GzD">
+                                <rect key="frame" x="0.0" y="25" width="600" height="575"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

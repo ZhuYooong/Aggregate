@@ -15,7 +15,7 @@ class AllNodeViewModel: NSObject {
     static func shareAllNodeViewModel() -> AllNodeViewModel {
         return allNodeViewModel
     }
-    //MARK:-网络请求
+    //MARK: - 网络请求
     func findAllNode(initData: (contentArray: [Node]?)->Void) {//取所有节点
         NetDataManager.shareNetDataManager().findAllNode(){
             (data) in
@@ -30,7 +30,7 @@ class AllNodeViewModel: NSObject {
             initData(contentArray: allNodes)
         }
     }
-    //MARK:-数据逻辑
+    //MARK: - 数据逻辑
     func findMineNode(mineNode: ([Node]) -> Void) {//我的节点
         let fetchRequest = NSFetchRequest(entityName: "NodeInfo")
         do {

@@ -87,7 +87,7 @@ class HomeViewController: UIViewController {
             (UIApplication.sharedApplication().delegate as! AppDelegate).drawerViewController!.toggleDrawerWithSide(JVFloatingDrawerSide.Left, animated: true, completion: nil)
         }
     }
-    //MARK:-节点列表
+    //MARK: - 节点列表
     func showOrHideNode(sender: DOHamburgerButton) {
         if self.nodeHeight.constant == 40 {//展开
             sender.select()
@@ -218,7 +218,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         hideNode(hamburgerBtn)
     }
 }
-//MARK:- topic表代理
+//MARK: - topic表代理
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return topicContentArray.count

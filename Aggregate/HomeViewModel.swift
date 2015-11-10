@@ -15,7 +15,7 @@ class HomeViewModel: NSObject {
     static func shareHomeViewModel() -> HomeViewModel {
         return homeViewModel
     }
-    //MARK:-网络请求
+    //MARK: - 网络请求
     func findHotTopics(initData: (contentArray: [Topic]?)->Void) {//取热议主题
         NetDataManager.shareNetDataManager().findHotTopics(){
             (data) in
@@ -58,7 +58,7 @@ class HomeViewModel: NSObject {
             initData(contentArray: thisTopics)
         }
     }
-    //MARK:-数据逻辑
+    //MARK: - 数据逻辑
     func initHeight(contentArray: [Topic], index: Int) -> CGFloat {//cell高度
         var height: CGFloat = 36
         if let text = contentArray[index].title {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040166811BF183CD0014FE31 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040166801BF183CD0014FE31 /* UserInfoViewModel.swift */; };
 		044A65641BEC542300DAC5AF /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A65471BEC542300DAC5AF /* TencentOpenAPI.framework */; };
 		044A65651BEC542300DAC5AF /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 044A65481BEC542300DAC5AF /* TencentOpenApi_IOS_Bundle.bundle */; };
 		044A65661BEC542300DAC5AF /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A654A1BEC542300DAC5AF /* libWeiboSDK.a */; };
@@ -89,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040166801BF183CD0014FE31 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		044A65471BEC542300DAC5AF /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		044A65481BEC542300DAC5AF /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
 		044A654A1BEC542300DAC5AF /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				048E8EEA1BD8811D006124FB /* HomeViewModel.swift */,
 				04C91C501BDE1D50002C758B /* AllNodeViewModel.swift */,
 				046DA6C41BE364DC0076DDB9 /* TopicDetailViewModel.swift */,
+				040166801BF183CD0014FE31 /* UserInfoViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				046DA6C51BE364DC0076DDB9 /* TopicDetailViewModel.swift in Sources */,
 				DE56CDA91BE8EB2A0076A75D /* Topic.swift in Sources */,
 				DE56CDAF1BE8EB5A0076A75D /* Replies.swift in Sources */,
+				040166811BF183CD0014FE31 /* UserInfoViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

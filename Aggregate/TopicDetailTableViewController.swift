@@ -20,12 +20,13 @@ class TopicDetailTableViewController: UITableViewController {
     @IBOutlet weak var headerContentHeight: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
     var topicId: String?
+    var userId: String?
     var repliesArray = [Replies]()
     override func viewDidLoad() {
         super.viewDidLoad()
         initData()
     }
-    //MARK:-初始化数据
+    //MARK: - 初始化数据
     func initData() {
         if let topicId = topicId {
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
@@ -46,6 +47,8 @@ class TopicDetailTableViewController: UITableViewController {
         }
     }
     func initTopicInfo(content: Topic) {//初始化话题内容
+        title = content.title
+        userId = content.member_id
         headerTitleLable.text = content.title
         let option = NSStringDrawingOptions.UsesLineFragmentOrigin
         let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(17)]
@@ -71,20 +74,22 @@ class TopicDetailTableViewController: UITableViewController {
         view.layoutIfNeeded()
         self.tableView.reloadData()
     }
-    //MARK:-跳转用户详情
+    //MARK: - 跳转用户详情
     @IBAction func mineUserInfoButtonClick(sender: UIButton) {
-        
+        performSegueWithIdentifier("userInfoSegue", sender: self)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "userInfoSegue" {
+            let topicDetail = segue.destinationViewController as! UserInfoViewController
             if let cell = sender as? UITableViewCell {
-                let topicDetail = segue.destinationViewController as! UserInfoViewController
                 topicDetail.userInfoId = "\(cell.tag)"
+            }else if let userId = userId {
+                topicDetail.userInfoId = userId
             }
         }
     }
 }
-//MARK:-回复tableView代理
+//MARK: - 回复tableView代理
 extension TopicDetailTableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return repliesArray.count
