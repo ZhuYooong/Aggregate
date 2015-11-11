@@ -27,7 +27,7 @@ class NetDataManager: NSObject {
                 PKHUD.sharedHUD.hide(afterDelay: 0)
             case .Failure( _):
                 PKHUD.sharedHUD.contentView = PKHUDErrorView()
-                PKHUD.sharedHUD.hide(afterDelay: 1.0);
+                PKHUD.sharedHUD.hide(afterDelay: 1.0)
             }
         }
     }

@@ -45,7 +45,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="61B-7v-xn1">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="(填了也没啥用)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="61B-7v-xn1">
                                         <rect key="frame" x="15" y="207" width="170" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="170" id="JEF-JA-ESM"/>
@@ -69,7 +69,7 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="UXR-cr-16F" kind="show" identifier="MineUserInfoSegue" id="joG-Z9-H7a"/>
+                                            <action selector="logInButtonClick:" destination="cQA-Mv-k4w" eventType="touchUpInside" id="eyB-Po-WzU"/>
                                         </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="V2EX_icon" translatesAutoresizingMaskIntoConstraints="NO" id="KD8-4L-A1t">
@@ -107,6 +107,7 @@
                     <connections>
                         <outlet property="passwordTextField" destination="61B-7v-xn1" id="le9-CD-xP4"/>
                         <outlet property="userNameTextField" destination="k52-Yq-wKJ" id="lHD-8c-64j"/>
+                        <segue destination="UXR-cr-16F" kind="show" identifier="MineUserInfoSegue" id="QYS-w8-x84"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbb-RN-qZr" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -31,8 +31,8 @@ class ViewController: UIViewController {
             () in
             print("add")
             }, image: UIImage(named: "add_icon"), andTitle: "Add")
-        split.tabsViewControllers = [V2EXTab, tab2];
-        split.actionsButtons = [button];
+        split.tabsViewControllers = [V2EXTab, tab2]
+        split.actionsButtons = [button]
         split.background = UIColor.whiteColor()
         navigationController?.pushViewController(split, animated: false)
     }

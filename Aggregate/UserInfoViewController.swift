@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class UserInfoViewController: UIViewController {
     @IBOutlet weak var userIconImageView: UIImageView!
@@ -30,6 +31,8 @@ class UserInfoViewController: UIViewController {
     }
     //MARK:初始化数据
     func initData() {
+        PKHUD.sharedHUD.contentView = PKHUDProgressView()
+        PKHUD.sharedHUD.show()
         if let userInfoId = userInfoId {//别人的信息
             UserInfoViewModel.shareUserInfoViewModel().findmembers(userInfoId, username: nil, initData: { (content) -> Void in
                 self.initMineData(content)
