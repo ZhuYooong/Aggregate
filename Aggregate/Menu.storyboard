@@ -107,20 +107,11 @@
                     <connections>
                         <outlet property="passwordTextField" destination="61B-7v-xn1" id="le9-CD-xP4"/>
                         <outlet property="userNameTextField" destination="k52-Yq-wKJ" id="lHD-8c-64j"/>
-                        <segue destination="UXR-cr-16F" kind="show" identifier="MineUserInfoSegue" id="QYS-w8-x84"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wbb-RN-qZr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-345" y="1778"/>
-        </scene>
-        <!--UserInfoViewController-->
-        <scene sceneID="NEL-Dq-Ufg">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="UserInfoViewController" id="UXR-cr-16F" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nE6-Ad-Vwk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="137" y="1778"/>
         </scene>
         <!--用户菜单-->
         <scene sceneID="8lH-dT-VPy">

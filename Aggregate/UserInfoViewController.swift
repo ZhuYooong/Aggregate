@@ -8,7 +8,7 @@
 
 import UIKit
 import PKHUD
-
+typealias backToLogInFunc = () -> Void
 class UserInfoViewController: UIViewController {
     @IBOutlet weak var userIconImageView: UIImageView!
     @IBOutlet weak var userNameLable: UILabel!
@@ -17,6 +17,7 @@ class UserInfoViewController: UIViewController {
     var userInfoId: String?
     var userName: String?
     var topicContentArray = [Topic]()
+    var backLogIn = backToLogInFunc?()
     override func viewDidLoad() {
         super.viewDidLoad()
         initItem()
@@ -25,6 +26,15 @@ class UserInfoViewController: UIViewController {
     //MARK:初始化控件
     func initItem() {
         mineTopicTableView.tableFooterView = UIView()
+        if let userName = userName where userName.characters.count > 0 {//特殊情况
+            let crossBtn = UIButton(frame: CGRectMake(0,0,30,30))
+            crossBtn.addTarget(self, action: "crossButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+            crossBtn.setImage(UIImage(named: "cross"), forState: UIControlState.Normal)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: crossBtn)
+        }
+    }
+    func crossButtonClick(sender: UIButton) {
+        backLogIn!()
     }
     @IBAction func exitButtonClick(sender: UIButton) {
         
@@ -115,6 +125,7 @@ extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
         if let id = topicContentArray[indexPath.row].id {
             let topicDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TopicDetailId") as! TopicDetailTableViewController
             topicDetailViewController.topicId = id
+            topicDetailViewController.hidesBottomBarWhenPushed = false
             navigationController?.pushViewController(topicDetailViewController, animated: true)
         }
     }

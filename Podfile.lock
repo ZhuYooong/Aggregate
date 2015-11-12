@@ -1,18 +1,21 @@
 PODS:
-  - Alamofire (3.1.0)
+  - Alamofire (3.1.2)
   - DOHamburgerButton (0.0.1)
+  - HxColor (2.0.0)
   - PKHUD (2.2.4)
   - SwiftyJSON (2.3.1)
 
 DEPENDENCIES:
   - Alamofire
   - DOHamburgerButton
+  - HxColor
   - PKHUD
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 415bd7f56197722978759078486689f7ef913dce
+  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
   DOHamburgerButton: 2afce23a99d7cb629bf65cd04c102fff962caab8
+  HxColor: dbf82e4363eaef1314f683514e8bb2716a00554d
   PKHUD: 4ec64535c98da203a3eb7303a58e13ac0bff1f8f
   SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
 

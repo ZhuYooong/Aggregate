@@ -49,7 +49,7 @@
         <!--Home View Controller-->
         <scene sceneID="9tz-Gs-gzW">
             <objects>
-                <viewController id="4bZ-af-dn7" customClass="HomeViewController" customModule="Aggregate" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeViewControllerId" id="4bZ-af-dn7" customClass="HomeViewController" customModule="Aggregate" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s0S-Cq-V2s"/>
                         <viewControllerLayoutGuide type="bottom" id="PvG-f3-de0"/>

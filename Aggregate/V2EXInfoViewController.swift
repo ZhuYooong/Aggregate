@@ -8,34 +8,30 @@
 
 import UIKit
 import PKHUD
-
+typealias logInfunc = (Bool) ->Void
 class V2EXInfoViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    var isChanged = logInfunc?()
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let _ = NSUserDefaults.standardUserDefaults().objectForKey("V2EXUserName") as? String {
-            performSegueWithIdentifier("MineUserInfoSegue", sender: self)
-        }
     }
     @IBAction func logInButtonClick(sender: UIButton) {
         if userNameTextField.text?.characters.count > 0 {
-            performSegueWithIdentifier("MineUserInfoSegue", sender: self)
+            let V2EXUserInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("UserInfoViewController") as! UserInfoViewController
+            let userInfoNaviation = UINavigationController(rootViewController: V2EXUserInfoViewController)
+            userInfoNaviation.navigationBar.backgroundColor = UIColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+            if let mineName = NSUserDefaults.standardUserDefaults().objectForKey("V2EXUserName") as? String {
+                V2EXUserInfoViewController.userName = mineName
+            }else {
+                V2EXUserInfoViewController.userName = userNameTextField.text
+            }
+            presentViewController(userInfoNaviation, animated: false, completion: nil)
+            isChanged!(true)
         }else {
             PKHUD.sharedHUD.contentView = PKHUDTextView(text: "请填写您的用户名")
             PKHUD.sharedHUD.show()
             PKHUD.sharedHUD.hide(afterDelay: 1.0)
-        }
-    }
-    // MARK: - Navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "MineUserInfoSegue" {
-            let userInfoViewController = segue.destinationViewController as! UserInfoViewController
-            if let mineName = NSUserDefaults.standardUserDefaults().objectForKey("V2EXUserName") as? String {
-                userInfoViewController.userName = mineName
-            }else {
-                userInfoViewController.userName = userNameTextField.text
-            }
         }
     }
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

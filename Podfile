@@ -5,3 +5,4 @@ pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'DOHamburgerButton'
 pod "PKHUD"
+pod 'HxColor'
