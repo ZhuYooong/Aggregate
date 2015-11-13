@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import HxColor
 typealias logInfunc = (Bool) ->Void
 class V2EXInfoViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
@@ -20,7 +21,8 @@ class V2EXInfoViewController: UIViewController {
         if userNameTextField.text?.characters.count > 0 {
             let V2EXUserInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("UserInfoViewController") as! UserInfoViewController
             let userInfoNaviation = UINavigationController(rootViewController: V2EXUserInfoViewController)
-            userInfoNaviation.navigationBar.backgroundColor = UIColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+            userInfoNaviation.navigationBar.barTintColor = UIColor(0x1F81F0)
+            userInfoNaviation.navigationBar.titleColor = UIColor.whiteColor()
             if let mineName = NSUserDefaults.standardUserDefaults().objectForKey("V2EXUserName") as? String {
                 V2EXUserInfoViewController.userName = mineName
             }else {
