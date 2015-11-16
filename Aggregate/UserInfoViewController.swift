@@ -29,7 +29,7 @@ class UserInfoViewController: UIViewController {
         if let userName = userName where userName.characters.count > 0 {//特殊情况
             let crossBtn = UIButton(frame: CGRectMake(0,0,30,30))
             crossBtn.addTarget(self, action: "crossButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
-            crossBtn.setImage(UIImage(named: "cross"), forState: UIControlState.Normal)
+            crossBtn.setImage(UIImage(named: "right_icon_services"), forState: UIControlState.Normal)
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: crossBtn)
         }
     }
@@ -65,7 +65,7 @@ class UserInfoViewController: UIViewController {
         self.title = mineInfo?.username
         self.userNameLable.text = mineInfo?.username
         self.userDescriptionLable.text = mineInfo?.bio
-        if let imageURL = mineInfo?.avatar_large {
+        if let imageURL = mineInfo?.avatar_normal {
             ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
                 self.userIconImageView.image = image
             })
@@ -109,7 +109,7 @@ extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
                 let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(12)]
                 cell.nodeNameWidth.constant = nodeText.boundingRectWithSize(CGSizeMake(100, 16), options: option, attributes: attributes, context: nil).size.width + 2
             }
-            view.layoutIfNeeded()
+            view.setNeedsLayout()
         }
         return cell
     }
@@ -122,11 +122,23 @@ extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let id = topicContentArray[indexPath.row].id {
-            let topicDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TopicDetailId") as! TopicDetailTableViewController
-            topicDetailViewController.topicId = id
-            topicDetailViewController.hidesBottomBarWhenPushed = false
-            navigationController?.pushViewController(topicDetailViewController, animated: true)
+        if let id = topicContentArray[indexPath.row].id {//自己的
+            if let _ = NSUserDefaults.standardUserDefaults().objectForKey("V2EXUserName") as? String where userName == nil && userInfoId == nil {
+                let topicDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TopicDetailId") as! TopicDetailTableViewController
+                topicDetailViewController.topicId = id
+                topicDetailViewController.backLogIn = {
+                topicDetailViewController.navigationController?.dismissViewControllerAnimated(false, completion: nil)
+                }
+                let userInfoNaviation = UINavigationController(rootViewController: topicDetailViewController)
+                userInfoNaviation.navigationBar.barTintColor = UIColor(0x1F81F0)
+                userInfoNaviation.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+                userInfoNaviation.navigationBar.tintColor = UIColor.whiteColor()
+                presentViewController(userInfoNaviation, animated: false, completion: nil)
+            }else {//别人的
+                let topicDetailViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("TopicDetailId") as! TopicDetailTableViewController
+                topicDetailViewController.topicId = id
+                navigationController?.pushViewController(topicDetailViewController, animated: true)
+            }
         }
     }
 }

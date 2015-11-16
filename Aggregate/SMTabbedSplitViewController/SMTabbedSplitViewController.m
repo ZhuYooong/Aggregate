@@ -105,12 +105,12 @@
     [_masterVC.view.layer addAnimation:transitionMaster forKey:@"hideOrAppear"];
     [UIView animateWithDuration:0.2 animations:^{
         _masterIsHidden = YES;
-        [self.view layoutIfNeeded];
+        [self.view setNeedsLayout];
     }];
 }
 - (void)showMaster {
     _masterIsHidden = NO;
-    [self.view layoutIfNeeded];
+    [self.view setNeedsLayout];
     
     CATransition *transitionMaster = [CATransition animation];
     transitionMaster.type = kCATransitionPush;

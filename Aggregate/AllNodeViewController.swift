@@ -55,7 +55,7 @@ class AllNodeViewController: UIViewController {
                 UIView.animateWithDuration(0.1) {
                     () in
                     self.scrollViewHeaderHeight.constant = self.selectNodeView.frame.size.height + 37
-                    self.view.layoutIfNeeded()
+                    self.view.setNeedsLayout()
                 }
             }
             if let allNodeArray = allNodeArray where self.allNodeView?.canCompiled == false, let tittleStr = tittleStr {

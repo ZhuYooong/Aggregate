@@ -9,35 +9,49 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var isChanged = true
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if isChanged {
-            creatTabbedSplit()
-            isChanged = false
-        }
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        initItem()
     }
-    //MARK: - 创建列表
-    func creatTabbedSplit() {
+    func initItem() {
         let split: SMTabbedSplitViewController = SMTabbedSplitViewController()
-        let V2EXTab = V2EXController()//V2EX
-        let viewController2 = UIViewController()
-        viewController2.view.backgroundColor = UIColor(red: 251 / 255, green: 73 / 255, blue: 71 / 255, alpha: 1)
-        let tab2 = SMTabBarItem(VC: viewController2, image: UIImage(named: "sina_icon"), andTitle: "sina")
-        tab2.selectedImage = UIImage(named: "sina_icon")
-        //添加按钮
-        let button = SMTabBarItem(actionBlock: {
+        let button = SMTabBarItem(actionBlock: {//添加按钮
             () in
-            print("add")
+            self.addTabButtonClick()
             }, image: UIImage(named: "add_icon"), andTitle: "Add")
-        split.tabsViewControllers = [V2EXTab, tab2]
         split.actionsButtons = [button]
         split.background = UIColor.whiteColor()
+        let bundlePath = NSBundle.mainBundle().pathForResource("AggregateList", ofType: "plist")
+        if let resultDictionary = NSMutableDictionary(contentsOfFile: bundlePath!) {
+            let V2EXTab = V2EXController()//V2EX
+            var tabViewControllerList = [V2EXTab]
+            for (name,state) in resultDictionary {
+                if let state = state as? String where state == "1" {
+                    if let name = name as? String where name == "Sina" {
+                        let viewController2 = UIViewController()
+                        viewController2.view.backgroundColor = UIColor(red: 251 / 255, green: 73 / 255, blue: 71 / 255, alpha: 1)
+                        let tab2 = SMTabBarItem(VC: viewController2, image: UIImage(named: "sina_icon"), andTitle: "sina")
+                        tab2.selectedImage = UIImage(named: "sina_icon")
+                        tabViewControllerList.append(tab2)
+                    }
+                }
+            }
+            split.tabsViewControllers = tabViewControllerList
+        }
         navigationController?.pushViewController(split, animated: false)
     }
+    func addTabButtonClick() {//添加按钮点击事件
+        let addMenuCollectionViewController = AddMenuCollectionViewController()
+        addMenuCollectionViewController.backLogIn = {
+            addMenuCollectionViewController.navigationController?.dismissViewControllerAnimated(false, completion: nil)
+        }
+        let userInfoNaviation = UINavigationController(rootViewController: addMenuCollectionViewController)
+        userInfoNaviation.navigationBar.barTintColor = UIColor(0x1F81F0)
+        userInfoNaviation.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        userInfoNaviation.navigationBar.tintColor = UIColor.whiteColor()
+        presentViewController(userInfoNaviation, animated: false, completion: nil)
+    }
+    //MARK: - 创建列表
     func V2EXController() -> SMTabBarItem {//V2EX
         if let mineName = NSUserDefaults.standardUserDefaults().objectForKey("V2EXUserName") as? String where mineName.characters.count > 0 {
             let V2EXUserInfoViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("UserInfoViewController")
@@ -47,10 +61,6 @@ class ViewController: UIViewController {
             return V2EXTab
         }else {
             let infoViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("V2EXId") as! V2EXInfoViewController
-            infoViewController.isChanged = {
-                (isLogIn) in
-                self.isChanged = isLogIn
-            }
             infoViewController.view.backgroundColor = UIColor.whiteColor()
             let V2EXTab = SMTabBarItem(VC: infoViewController, image: UIImage(named: "V2EX_icon"), andTitle: "V2EX")
             V2EXTab.selectedImage = UIImage(named: "V2EX_icon")

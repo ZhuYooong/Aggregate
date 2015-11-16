@@ -97,7 +97,7 @@ class HomeViewController: UIViewController {
                 self.nodeHeight.constant = 40 * ceil(count)
                 self.view.layoutIfNeeded()
             })
-        }else{//收缩
+        }else {//收缩
             hideNode(sender)
         }
     }
@@ -247,7 +247,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 let attributes = [NSFontAttributeName: UIFont.systemFontOfSize(12)]
                 cell.nodeWidth.constant = nodeText.boundingRectWithSize(CGSizeMake(100, 16), options: option, attributes: attributes, context: nil).size.width + 2
             }
-            view.layoutIfNeeded()
+            view.setNeedsLayout()
         }
         return cell
     }

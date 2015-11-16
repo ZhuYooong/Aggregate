@@ -22,9 +22,23 @@ class TopicDetailTableViewController: UITableViewController {
     var topicId: String?
     var userId: String?
     var repliesArray = [Replies]()
+    var backLogIn = backToLogInFunc?()
     override func viewDidLoad() {
         super.viewDidLoad()
+        initItem()
         initData()
+    }
+    //MARK:初始化控件
+    func initItem() {
+        if let _ = backLogIn {//特殊情况
+            let crossBtn = UIButton(frame: CGRectMake(0,0,30,30))
+            crossBtn.addTarget(self, action: "crossButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+            crossBtn.setImage(UIImage(named: "right_icon_services"), forState: UIControlState.Normal)
+            navigationItem.rightBarButtonItem = UIBarButtonItem(customView: crossBtn)
+        }
+    }
+    func crossButtonClick(sender: UIButton) {
+        backLogIn!()
     }
     //MARK: - 初始化数据
     func initData() {
@@ -71,7 +85,7 @@ class TopicDetailTableViewController: UITableViewController {
         headerView.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 54 + headerContentHeight.constant + headerTitleHeight.constant)
         tableView.tableFooterView = UIView()
         tableView.tableHeaderView = headerView
-        view.layoutIfNeeded()
+        view.setNeedsLayout()
         self.tableView.reloadData()
     }
     //MARK: - 跳转用户详情
