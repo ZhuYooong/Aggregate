@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040166811BF183CD0014FE31 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040166801BF183CD0014FE31 /* UserInfoViewModel.swift */; };
+		0403EE841BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403EE831BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift */; };
 		044A65751BEC54DE00DAC5AF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A65741BEC54DE00DAC5AF /* libz.tbd */; };
 		044A65771BEC550700DAC5AF /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A65761BEC550700DAC5AF /* libicucore.tbd */; };
 		044A65791BEC551E00DAC5AF /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A65781BEC551E00DAC5AF /* libstdc++.tbd */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		040166801BF183CD0014FE31 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
+		0403EE831BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		044A65721BEC54CE00DAC5AF /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
 		044A65741BEC54DE00DAC5AF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		044A65761BEC550700DAC5AF /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -550,6 +552,7 @@
 			children = (
 				DE15732B1BC6409F000A88AA /* ViewController.swift */,
 				04923ED51BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift */,
+				0403EE831BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift */,
 				04923ED41BF9D28400CEB7CB /* MenuList */,
 			);
 			name = Menu;
@@ -756,6 +759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				048E8EF81BD8BECE006124FB /* UserInfo+CoreDataProperties.swift in Sources */,
+				0403EE841BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift in Sources */,
 				048E8EF61BD8BECE006124FB /* NodeInfo+CoreDataProperties.swift in Sources */,
 				DE0EC3DB1BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m in Sources */,
 				04923ED61BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift in Sources */,

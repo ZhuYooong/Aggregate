@@ -22,12 +22,12 @@ class ViewController: UIViewController {
         split.actionsButtons = [button]
         split.background = UIColor.whiteColor()
         let bundlePath = NSBundle.mainBundle().pathForResource("AggregateList", ofType: "plist")
-        if let resultDictionary = NSMutableDictionary(contentsOfFile: bundlePath!) {
+        if let resultArray = NSArray(contentsOfFile: bundlePath!) {
             let V2EXTab = V2EXController()//V2EX
             var tabViewControllerList = [V2EXTab]
-            for (name,state) in resultDictionary {
-                if let state = state as? String where state == "1" {
-                    if let name = name as? String where name == "Sina" {
+            for objectDic in resultArray {
+                if let state = objectDic["state"] as? String where state == "1" {
+                    if let name = objectDic["name"] as? String where name == "Sina" {
                         let viewController2 = UIViewController()
                         viewController2.view.backgroundColor = UIColor(red: 251 / 255, green: 73 / 255, blue: 71 / 255, alpha: 1)
                         let tab2 = SMTabBarItem(VC: viewController2, image: UIImage(named: "sina_icon"), andTitle: "sina")
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(split, animated: false)
     }
     func addTabButtonClick() {//添加按钮点击事件
-        let addMenuCollectionViewController = AddMenuCollectionViewController()
+        let addMenuCollectionViewController = UIStoryboard(name: "Menu", bundle: nil).instantiateViewControllerWithIdentifier("AddMenuControllerId") as! AddMenuCollectionViewController
         addMenuCollectionViewController.backLogIn = {
             addMenuCollectionViewController.navigationController?.dismissViewControllerAnimated(false, completion: nil)
         }
