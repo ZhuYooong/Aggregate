@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		040166811BF183CD0014FE31 /* UserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040166801BF183CD0014FE31 /* UserInfoViewModel.swift */; };
 		0403EE841BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0403EE831BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift */; };
+		0431D1631BFC62340005CD79 /* AggregateList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0431D1621BFC62340005CD79 /* AggregateList.plist */; };
 		044A65751BEC54DE00DAC5AF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A65741BEC54DE00DAC5AF /* libz.tbd */; };
 		044A65771BEC550700DAC5AF /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A65761BEC550700DAC5AF /* libicucore.tbd */; };
 		044A65791BEC551E00DAC5AF /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 044A65781BEC551E00DAC5AF /* libstdc++.tbd */; };
@@ -41,7 +42,6 @@
 		04923ECF1BF9B64C00CEB7CB /* ShareSDKInterfaceAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04923EC11BF9B64C00CEB7CB /* ShareSDKInterfaceAdapter.framework */; };
 		04923ED01BF9B64C00CEB7CB /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04923EC21BF9B64C00CEB7CB /* ShareSDKUI.bundle */; };
 		04923ED11BF9B64C00CEB7CB /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04923EC31BF9B64C00CEB7CB /* ShareSDKUI.framework */; };
-		04923ED31BF9C7C500CEB7CB /* AggregateList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04923ED21BF9C7C500CEB7CB /* AggregateList.plist */; };
 		04923ED61BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04923ED51BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift */; };
 		04C91C4A1BDE1127002C758B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C91C491BDE1126002C758B /* ImageLoader.swift */; };
 		04C91C511BDE1D50002C758B /* AllNodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C91C501BDE1D50002C758B /* AllNodeViewModel.swift */; };
@@ -95,6 +95,7 @@
 /* Begin PBXFileReference section */
 		040166801BF183CD0014FE31 /* UserInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoViewModel.swift; sourceTree = "<group>"; };
 		0403EE831BFB22C400BB3EB3 /* AddMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMenuCollectionViewCell.swift; sourceTree = "<group>"; };
+		0431D1621BFC62340005CD79 /* AggregateList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AggregateList.plist; sourceTree = "<group>"; };
 		044A65721BEC54CE00DAC5AF /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
 		044A65741BEC54DE00DAC5AF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		044A65761BEC550700DAC5AF /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
@@ -141,7 +142,6 @@
 		04923EC11BF9B64C00CEB7CB /* ShareSDKInterfaceAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKInterfaceAdapter.framework; sourceTree = "<group>"; };
 		04923EC21BF9B64C00CEB7CB /* ShareSDKUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKUI.bundle; sourceTree = "<group>"; };
 		04923EC31BF9B64C00CEB7CB /* ShareSDKUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKUI.framework; sourceTree = "<group>"; };
-		04923ED21BF9C7C500CEB7CB /* AggregateList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AggregateList.plist; sourceTree = "<group>"; };
 		04923ED51BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMenuCollectionViewController.swift; sourceTree = "<group>"; };
 		04C91C491BDE1126002C758B /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		04C91C501BDE1D50002C758B /* AllNodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNodeViewModel.swift; sourceTree = "<group>"; };
@@ -424,12 +424,12 @@
 		DE15735A1BC64118000A88AA /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				0431D1621BFC62340005CD79 /* AggregateList.plist */,
 				DE1573291BC6409F000A88AA /* AppDelegate.swift */,
 				DE1573351BC6409F000A88AA /* LaunchScreen.storyboard */,
 				DE1573381BC6409F000A88AA /* Info.plist */,
 				DE15735F1BC66AB5000A88AA /* thirdParty.m */,
 				DE15735E1BC66AB5000A88AA /* Aggregate-Bridging-Header.h */,
-				04923ED21BF9C7C500CEB7CB /* AggregateList.plist */,
 			);
 			name = SupportingFiles;
 			sourceTree = "<group>";
@@ -676,7 +676,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04923ED31BF9C7C500CEB7CB /* AggregateList.plist in Resources */,
+				0431D1631BFC62340005CD79 /* AggregateList.plist in Resources */,
 				DE1573371BC6409F000A88AA /* LaunchScreen.storyboard in Resources */,
 				DE1573341BC6409F000A88AA /* Assets.xcassets in Resources */,
 				048E8EE61BD876FA006124FB /* Menu.storyboard in Resources */,

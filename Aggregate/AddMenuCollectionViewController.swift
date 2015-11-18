@@ -12,19 +12,20 @@ private let reuseIdentifier = "AddMenuCell"
 
 class AddMenuCollectionViewController: UICollectionViewController {
     var backLogIn = backToLogInFunc?()
-    var contentArray = NSArray()
+    let bundlePath = NSBundle.mainBundle().pathForResource("AggregateList", ofType: "plist")
+    var contentArray: NSMutableArray {
+        set {
+        }get {
+            if let resultArray = NSMutableArray(contentsOfFile: bundlePath!) {
+                return resultArray
+            }else {
+                return NSMutableArray()
+            }
+        }
+    }
      override func viewDidLoad() {
         super.viewDidLoad()
         initItem()
-        initData()
-    }
-    //MARK:初始化数据
-    func initData() {
-        let bundlePath = NSBundle.mainBundle().pathForResource("AggregateList", ofType: "plist")
-        if let resultArray = NSArray(contentsOfFile: bundlePath!) {
-            contentArray = resultArray
-            collectionView?.reloadData()
-        }
     }
     //MARK:初始化控件
     func initItem() {
@@ -63,13 +64,34 @@ class AddMenuCollectionViewController: UICollectionViewController {
     }
     // MARK: UICollectionViewDelegate
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row > 0 {
+        if indexPath.row > 0 && contentArray.count > indexPath.row {
             let cell = collectionView.cellForItemAtIndexPath(indexPath) as! AddMenuCollectionViewCell
+            var messageStr = ""
+            var okAction = UIAlertAction?()
+            let contentDic = contentArray[indexPath.row] as! NSMutableDictionary
+            contentDic.setValue("1", forKey: "state")
             if cell.addMenuTitleLable.backgroundColor == UIColor.lightGrayColor() {
-                
+                messageStr = "你确定要删除吗？"
+                okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                    contentDic.setValue("0", forKey: "state")
+                    contentDic.writeToFile(self.bundlePath!, atomically: false)
+                    self.collectionView!.reloadData()
+                })
             }else {
-                
+                messageStr = "你确定要添加吗？"
+                okAction = UIAlertAction(title: "确定", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+                    contentDic.setValue("1", forKey: "state")
+                    contentDic.writeToFile(self.bundlePath!, atomically: false)
+                    self.collectionView!.reloadData()
+                })
             }
+            let addAlert = UIAlertController(title: "温馨提示", message: messageStr, preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "取消", style: UIAlertActionStyle.Cancel, handler: nil)
+            addAlert.addAction(cancelAction)
+            if let okAction = okAction {
+                addAlert.addAction(okAction)
+            }
+            presentViewController(addAlert, animated: true, completion: nil)
         }
     }
 }
