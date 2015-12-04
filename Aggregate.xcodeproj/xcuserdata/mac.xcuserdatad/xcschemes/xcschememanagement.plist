@@ -9,9 +9,59 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>AggregateModelKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>AggregateWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>AggregateWatchModelKit.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>Complication - AggregateWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>Glance - AggregateWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Notification - AggregateWatch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>042C63061C0D944200418FD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>044C21771C0FE9B1005BDC28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>044C21801C0FE9B3005BDC28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>044C219A1C0FEA83005BDC28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DE1573251BC6409F000A88AA</key>
 		<dict>
 			<key>primary</key>

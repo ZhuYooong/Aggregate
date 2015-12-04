@@ -9,6 +9,8 @@
 import UIKit
 import DOHamburgerButton
 import PKHUD
+import WatchConnectivity
+
 class HomeViewController: UIViewController {
     var drawerAnimator: JVFloatingDrawerSpringAnimator?
     let hamburgerBtn = DOHamburgerButton()//显示节点按钮
@@ -18,6 +20,7 @@ class HomeViewController: UIViewController {
     var mineNodeArray = [Node]()
     var currentNum = 0
     var isEdit = true//是否刷新节点
+    var session: WCSession?//在 iOS app 中启动 session
     @IBOutlet weak var nodeHeight: NSLayoutConstraint!//下边的高度
     @IBOutlet weak var nodeCollectionView: UICollectionView!
     @IBOutlet weak var topicTableView: UITableView!
@@ -37,15 +40,28 @@ class HomeViewController: UIViewController {
             nodeListNumber = mineNodeArray.count + 4
             AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
                 (mineNodeContentArr) in
-                self.mineNodeArray = mineNodeContentArr
-                self.nodeListNumber = self.mineNodeArray.count + 4
+                if mineNodeContentArr.count > 0 {
+                    self.mineNodeArray = mineNodeContentArr
+                    self.nodeListNumber = self.mineNodeArray.count + 4
+                }
+                do {
+                    try self.session?.updateApplicationContext(["MineNode": self.mineNodeArray])
+                } catch _ {
+                    
+                }
+                self.currentNum = 0
+                self.isEdit = false
                 self.nodeCollectionView.reloadData()
             }
-            self.currentNum = 0
-            isEdit = false
         }
     }
     func initItem() {
+        //在 iOS app 中启动 session
+        if WCSession.isSupported() {
+            session = WCSession.defaultSession()
+            session!.delegate = self
+            session!.activateSession()
+        }
         //node列表
         nodeCollectionView.registerClass(NodeCollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "nodeCell")
         //topic列表
@@ -259,4 +275,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return 77
         }
     }
+}
+extension HomeViewController: WCSessionDelegate {
+    
 }

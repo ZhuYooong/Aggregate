@@ -35,7 +35,7 @@ class AllNodeViewModel: NSObject {
         let fetchRequest = NSFetchRequest(entityName: "NodeInfo")
         do {
             let fetchResults = try context.executeFetchRequest(fetchRequest) as? [NodeInfo]
-            if let fetchResults = fetchResults where fetchResults.count > 0 {
+            if let fetchResults = fetchResults {
                 var mineNodes = [Node]()
                 for nodeItem in fetchResults {
                     let node = Node(id: nodeItem.id, name: nodeItem.name, url: nodeItem.url, title: nodeItem.title, title_alternative: nodeItem.title_alternative, topics: nodeItem.topics, header: nodeItem.header, footer: nodeItem.footer, created: nodeItem.created)
