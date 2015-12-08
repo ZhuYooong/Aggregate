@@ -71,6 +71,7 @@
 		04D4FB161C0EE010007C0A70 /* NodeListRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4FB151C0EE010007C0A70 /* NodeListRowController.swift */; };
 		04D4FB181C0EE02A007C0A70 /* TopicListRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4FB171C0EE02A007C0A70 /* TopicListRowController.swift */; };
 		04D4FB1A1C0EE041007C0A70 /* TopicContentRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4FB191C0EE041007C0A70 /* TopicContentRowController.swift */; };
+		04E675C61C156C1E00627603 /* TopicDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E675C51C156C1E00627603 /* TopicDetailViewModel.swift */; };
 		04FC878A1BD8DF9F00FDF5A6 /* TopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC87891BD8DF9F00FDF5A6 /* TopicTableViewCell.swift */; };
 		59A8633F00FE70AB8385533C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0D4E6D70E3C90ACD939C53 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		DE0129AD1BCE5A9F0039B643 /* AllNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0129AC1BCE5A9F0039B643 /* AllNodeViewController.swift */; };
@@ -267,6 +268,7 @@
 		04D4FB151C0EE010007C0A70 /* NodeListRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeListRowController.swift; sourceTree = "<group>"; };
 		04D4FB171C0EE02A007C0A70 /* TopicListRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListRowController.swift; sourceTree = "<group>"; };
 		04D4FB191C0EE041007C0A70 /* TopicContentRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicContentRowController.swift; sourceTree = "<group>"; };
+		04E675C51C156C1E00627603 /* TopicDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicDetailViewModel.swift; sourceTree = "<group>"; };
 		04FC87891BD8DF9F00FDF5A6 /* TopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicTableViewCell.swift; sourceTree = "<group>"; };
 		63C339A4FE4E777FF06D2F87 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CA0D4E6D70E3C90ACD939C53 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +380,7 @@
 		042C63171C0D944300418FD1 /* AggregateWatch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				04E675C31C15546800627603 /* ThirdParty */,
 				044DDA621C1014550013270A /* Models */,
 				04D4FB141C0EDFDB007C0A70 /* RowControllers */,
 				04D4FB0F1C0EDECB007C0A70 /* ViewControllers */,
@@ -391,9 +394,6 @@
 		042C63181C0D944300418FD1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				04023A801C11957D00CFA7CF /* Info-watchOS.plist */,
-				04023A811C11957D00CFA7CF /* SwiftyJSON.h */,
-				04023A821C11957D00CFA7CF /* SwiftyJSON.swift */,
 				046A5DF61C1147D200BFDC23 /* NetDataManager.swift */,
 				042C631C1C0D944300418FD1 /* ExtensionDelegate.swift */,
 				042C631E1C0D944300418FD1 /* NotificationController.swift */,
@@ -419,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				046A5CCB1C11440700BFDC23 /* HomeViewModel.swift */,
+				04E675C51C156C1E00627603 /* TopicDetailViewModel.swift */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -537,6 +538,24 @@
 				04D4FB191C0EE041007C0A70 /* TopicContentRowController.swift */,
 			);
 			name = RowControllers;
+			sourceTree = "<group>";
+		};
+		04E675C31C15546800627603 /* ThirdParty */ = {
+			isa = PBXGroup;
+			children = (
+				04E675C41C15547D00627603 /* SwiftyJSON */,
+			);
+			name = ThirdParty;
+			sourceTree = "<group>";
+		};
+		04E675C41C15547D00627603 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				04023A801C11957D00CFA7CF /* Info-watchOS.plist */,
+				04023A811C11957D00CFA7CF /* SwiftyJSON.h */,
+				04023A821C11957D00CFA7CF /* SwiftyJSON.swift */,
+			);
+			name = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		631DE5171FABB09635E6F9CB /* Pods */ = {
@@ -1072,6 +1091,7 @@
 			files = (
 				042C631F1C0D944300418FD1 /* NotificationController.swift in Sources */,
 				042C631D1C0D944300418FD1 /* ExtensionDelegate.swift in Sources */,
+				04E675C61C156C1E00627603 /* TopicDetailViewModel.swift in Sources */,
 				04D4FB131C0EDF8D007C0A70 /* TopicContentInterfaceController.swift in Sources */,
 				044DDA661C10149E0013270A /* Node.swift in Sources */,
 				042C63231C0D944300418FD1 /* ComplicationController.swift in Sources */,

@@ -24,6 +24,7 @@ class InterfaceController: WKInterfaceController {
     //MARK:- 初始化数据
     func initData() {
         dispatch_once(&InterfaceController.token) { () -> Void in
+            self.becomeActive()
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "becomeActive", name: applicationDidBecomeActiveNotification, object: nil)
             if WCSession.isSupported() {
                 InterfaceController.session = WCSession.defaultSession()
@@ -37,7 +38,7 @@ class InterfaceController: WKInterfaceController {
         if let contentArray = userDefault.objectForKey("MineNode") as? [Node] where contentArray.count > 0 {
             mineNodeArray += contentArray
         }else {
-            mineNodeArray += HomeViewModel.shareHomeViewModel().initMineNode()
+            mineNodeArray += HomeViewModel.shareHomeViewModel.initMineNode()
         }
         reloadData()
     }

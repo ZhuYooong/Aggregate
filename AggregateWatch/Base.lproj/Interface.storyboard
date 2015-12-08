@@ -13,7 +13,7 @@
                         <table alignment="left" id="u5K-WM-IA1">
                             <items>
                                 <tableRow identifier="NodeList" id="s1s-rj-SVz" customClass="NodeListRowController" customModule="AggregateWatch_Extension">
-                                    <group key="rootItem" width="1" alignment="left" id="GjJ-hh-oeU">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="GjJ-hh-oeU">
                                         <items>
                                             <button width="136" alignment="left" title="Button" id="oNn-Ex-a9o">
                                                 <connections>
@@ -44,9 +44,10 @@
                         <table alignment="left" id="Gyu-cK-rp3">
                             <items>
                                 <tableRow identifier="TopicList" id="YhT-0U-w1A" customClass="TopicListRowController" customModule="AggregateWatch_Extension">
-                                    <group key="rootItem" width="1" height="37.5" alignment="left" id="E3m-6e-uAv">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="E3m-6e-uAv">
                                         <items>
                                             <button width="1" alignment="left" title="Button" id="Nh5-Gb-Kab">
+                                                <fontDescription key="font" type="system" pointSize="15"/>
                                                 <connections>
                                                     <action selector="goToContrnt" destination="YhT-0U-w1A" id="tbs-mq-Pw2"/>
                                                 </connections>
@@ -75,9 +76,9 @@
                         <table alignment="left" id="sTG-sP-r5P">
                             <items>
                                 <tableRow identifier="TopicContent" id="6Bz-kb-ipS" customClass="TopicContentRowController" customModule="AggregateWatch_Extension">
-                                    <group key="rootItem" width="1" alignment="left" id="yu1-72-Ejz">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="yu1-72-Ejz">
                                         <items>
-                                            <label width="1" alignment="left" text="Label" id="VIh-EC-0Gq"/>
+                                            <label width="1" alignment="left" text="Label" numberOfLines="0" id="VIh-EC-0Gq"/>
                                         </items>
                                     </group>
                                     <connections>

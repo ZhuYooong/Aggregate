@@ -36,9 +36,9 @@ class HomeViewController: UIViewController {
     //MARK:- 初始化控件
     func initNodeData() {
         if isEdit {
-            mineNodeArray = HomeViewModel.shareHomeViewModel().initMineNode()
+            mineNodeArray = HomeViewModel.shareHomeViewModel.initMineNode()
             nodeListNumber = mineNodeArray.count + 4
-            AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
+            AllNodeViewModel.shareAllNodeViewModel.findMineNode() {
                 (mineNodeContentArr) in
                 if mineNodeContentArr.count > 0 {
                     self.mineNodeArray = mineNodeContentArr
@@ -67,7 +67,7 @@ class HomeViewController: UIViewController {
         //topic列表
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
-        HomeViewModel.shareHomeViewModel().findHotTopics() {
+        HomeViewModel.shareHomeViewModel.findHotTopics() {
             (contentArray: [Topic]?) in
             if let contentArray = contentArray where contentArray.count > 0 {
                 self.title = "今日热议"
@@ -183,7 +183,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         if indexPath.row == 0 {//热点
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
             PKHUD.sharedHUD.show()
-            HomeViewModel.shareHomeViewModel().findHotTopics() {
+            HomeViewModel.shareHomeViewModel.findHotTopics() {
                 (contentArray: [Topic]?) in
                 if let contentArray = contentArray where contentArray.count > 0 {
                     self.topicContentArray = contentArray
@@ -194,7 +194,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         }else if indexPath.row == 1 {//全部
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
             PKHUD.sharedHUD.show()
-            HomeViewModel.shareHomeViewModel().findLastestTopics() {
+            HomeViewModel.shareHomeViewModel.findLastestTopics() {
                 (contentArray: [Topic]?) in
                 if let contentArray = contentArray where contentArray.count > 0 {
                     self.topicContentArray = contentArray
@@ -222,7 +222,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                     let id = mineNodeArray[tittleLable.tag].id
                     PKHUD.sharedHUD.contentView = PKHUDProgressView()
                     PKHUD.sharedHUD.show()
-                    HomeViewModel.shareHomeViewModel().findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
+                    HomeViewModel.shareHomeViewModel.findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
                         (contentArray: [Topic]?) in
                         self.topicContentArray = contentArray!
                         self.topicTableView.reloadData()
@@ -246,11 +246,11 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.tag = id
             }
             cell.topicContent.text = topicContentArray[indexPath.row].title
-            cell.topicContentHeight.constant = HomeViewModel.shareHomeViewModel().initHeight(topicContentArray, index: indexPath.row)
+            cell.topicContentHeight.constant = HomeViewModel.shareHomeViewModel.initHeight(topicContentArray, index: indexPath.row)
             cell.userNameLable.text = topicContentArray[indexPath.row].member_username
             if let timeStr = Double(topicContentArray[indexPath.row].created!) {
                 let date = NSDate(timeIntervalSince1970: timeStr)
-                cell.topicTimeLable.text = HomeViewModel.shareHomeViewModel().initDate(date)
+                cell.topicTimeLable.text = HomeViewModel.shareHomeViewModel.initDate(date)
             }
             cell.nodeLable.text = topicContentArray[indexPath.row].node_title
             if let imageURL = topicContentArray[indexPath.row].member_avatar_mini {
@@ -269,7 +269,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if topicContentArray.count > indexPath.row {
-            let contentHeight = HomeViewModel.shareHomeViewModel().initHeight(topicContentArray, index: indexPath.row)
+            let contentHeight = HomeViewModel.shareHomeViewModel.initHeight(topicContentArray, index: indexPath.row)
             return contentHeight + 40
         }else {
             return 77

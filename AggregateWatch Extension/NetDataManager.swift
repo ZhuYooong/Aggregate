@@ -9,10 +9,8 @@
 import UIKit
 
 class NetDataManager: NSObject {
-    static let netDataManager: NetDataManager = NetDataManager()
-    static func shareNetDataManager() -> NetDataManager {
-        return netDataManager
-    }
+    static let shareNetDataManager = NetDataManager()
+    private override init() { }
     let pageSize = 20
     //baseURL
     let V2EXBaseURL = "https://www.v2ex.com/api"

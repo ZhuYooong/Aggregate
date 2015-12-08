@@ -11,13 +11,11 @@ import SwiftyJSON
 import CoreData
 class AllNodeViewModel: NSObject {
     var context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext //获取存储的上下文
-    static let allNodeViewModel: AllNodeViewModel = AllNodeViewModel()
-    static func shareAllNodeViewModel() -> AllNodeViewModel {
-        return allNodeViewModel
-    }
+    static let shareAllNodeViewModel = AllNodeViewModel()
+    private override init() {}
     //MARK: - 网络请求
     func findAllNode(initData: (contentArray: [Node]?)->Void) {//取所有节点
-        NetDataManager.shareNetDataManager().findAllNode(){
+        NetDataManager.shareNetDataManager.findAllNode(){
             (data) in
             var allNodes = [Node]()
             if let data = data {

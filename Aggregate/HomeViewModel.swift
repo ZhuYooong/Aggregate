@@ -11,13 +11,11 @@ import SwiftyJSON
 import CoreData
 class HomeViewModel: NSObject {
     var context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext //获取存储的上下文
-    static let homeViewModel: HomeViewModel = HomeViewModel()
-    static func shareHomeViewModel() -> HomeViewModel {
-        return homeViewModel
-    }
+    static let shareHomeViewModel = HomeViewModel()
+    private override init() {}
     //MARK: - 网络请求
     func findHotTopics(initData: (contentArray: [Topic]?)->Void) {//取热议主题
-        NetDataManager.shareNetDataManager().findHotTopics(){
+        NetDataManager.shareNetDataManager.findHotTopics(){
             (data) in
             var hotTopics = [Topic]()
             if let data = data {
@@ -31,7 +29,7 @@ class HomeViewModel: NSObject {
         }
     }
     func findLastestTopics(initData: (contentArray: [Topic]?)->Void) {//取全部主题
-        NetDataManager.shareNetDataManager().findLatestTopics(){
+        NetDataManager.shareNetDataManager.findLatestTopics(){
             (data) in
             var allTopics = [Topic]()
             if let data = data {
@@ -45,7 +43,7 @@ class HomeViewModel: NSObject {
         }
     }
     func findNodeTopics(username: String?, nodeId: String?, nodeName: String?, initData: (contentArray: [Topic]?)->Void) {//根据提供信息取主题
-        NetDataManager.shareNetDataManager().findTopics(username, nodeId: nodeId, nodeName: nodeName){
+        NetDataManager.shareNetDataManager.findTopics(username, nodeId: nodeId, nodeName: nodeName){
             (data) in
             var thisTopics = [Topic]()
             if let data = data {

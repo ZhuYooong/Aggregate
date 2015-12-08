@@ -44,19 +44,19 @@ class UserInfoViewController: UIViewController {
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
         if let userInfoId = userInfoId {//别人的信息
-            UserInfoViewModel.shareUserInfoViewModel().findmembers(userInfoId, username: nil, initData: { (content) -> Void in
+            UserInfoViewModel.shareUserInfoViewModel.findmembers(userInfoId, username: nil, initData: { (content) -> Void in
                 self.initMineData(content)
             })
         }else if let userName = userName {//自己的信息
-            UserInfoViewModel.shareUserInfoViewModel().findmembers(nil, username: userName, initData: { (content) -> Void in
+            UserInfoViewModel.shareUserInfoViewModel.findmembers(nil, username: userName, initData: { (content) -> Void in
                 self.initMineData(content)
                 if let mineInfo = content {
                     NSUserDefaults.standardUserDefaults().setObject(mineInfo.username, forKey: "V2EXUserName")
-                    UserInfoViewModel.shareUserInfoViewModel().insertMineInfo(mineInfo)
+                    UserInfoViewModel.shareUserInfoViewModel.insertMineInfo(mineInfo)
                 }
             })
         }else if let mineName = NSUserDefaults.standardUserDefaults().objectForKey("V2EXUserName") as? String {//默认的信息
-            UserInfoViewModel.shareUserInfoViewModel().findMineInfo(mineName, mineInfo: { (user) -> Void in
+            UserInfoViewModel.shareUserInfoViewModel.findMineInfo(mineName, mineInfo: { (user) -> Void in
                 self.initMineData(user)
             })
         }
@@ -70,7 +70,7 @@ class UserInfoViewController: UIViewController {
                 self.userIconImageView.image = image
             })
         }
-        HomeViewModel.shareHomeViewModel().findNodeTopics(self.userNameLable.text, nodeId: nil, nodeName: nil, initData: { (contentArray) -> Void in
+        HomeViewModel.shareHomeViewModel.findNodeTopics(self.userNameLable.text, nodeId: nil, nodeName: nil, initData: { (contentArray) -> Void in
             if let contentArray = contentArray {
                 self.topicContentArray = contentArray
                 self.mineTopicTableView.reloadData()
@@ -98,10 +98,10 @@ extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.tag = id
             }
             cell.topicTitleLable.text = topicContentArray[indexPath.row].title
-            cell.topicTitleHeight.constant = HomeViewModel.shareHomeViewModel().initHeight(topicContentArray, index: indexPath.row)
+            cell.topicTitleHeight.constant = HomeViewModel.shareHomeViewModel.initHeight(topicContentArray, index: indexPath.row)
             if let timeStr = Double(topicContentArray[indexPath.row].created!) {
                 let date = NSDate(timeIntervalSince1970: timeStr)
-                cell.timeLable.text = HomeViewModel.shareHomeViewModel().initDate(date)
+                cell.timeLable.text = HomeViewModel.shareHomeViewModel.initDate(date)
             }
             cell.nodeNameLable.text = topicContentArray[indexPath.row].node_title
             if let nodeText = cell.nodeNameLable.text {
@@ -115,7 +115,7 @@ extension UserInfoViewController: UITableViewDataSource, UITableViewDelegate {
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if topicContentArray.count > indexPath.row {
-            let contentHeight = HomeViewModel.shareHomeViewModel().initHeight(topicContentArray, index: indexPath.row)
+            let contentHeight = HomeViewModel.shareHomeViewModel.initHeight(topicContentArray, index: indexPath.row)
             return contentHeight + 40
         }else {
             return 77

@@ -45,13 +45,13 @@ class TopicDetailTableViewController: UITableViewController {
         if let topicId = topicId {
             PKHUD.sharedHUD.contentView = PKHUDProgressView()
             PKHUD.sharedHUD.show()
-            TopicDetailViewModel.shareTopicDetailViewModel().findTopicsInfo(topicId) {
+            TopicDetailViewModel.shareTopicDetailViewModel.findTopicsInfo(topicId) {
                 (content) in
                 if let content = content {
                     self.initTopicInfo(content)
                 }
             }
-            TopicDetailViewModel.shareTopicDetailViewModel().findReplies(topicId, page: "\(0)") {
+            TopicDetailViewModel.shareTopicDetailViewModel.findReplies(topicId, page: "\(0)") {
                 (contentArray) in
                 if let contentArray = contentArray where contentArray.count > 0 {
                     self.repliesArray = contentArray
@@ -125,7 +125,7 @@ extension TopicDetailTableViewController {
             cell.memberNameWidth.constant = cell.memberNameLable.text!.boundingRectWithSize(CGSizeMake(1000, 18), options: option, attributes: attributes, context: nil).size.width + 2
             if let timeStr = Double(repliesArray[indexPath.row].created!) {
                 let date = NSDate(timeIntervalSince1970: timeStr)
-                cell.timeLable.text = HomeViewModel.shareHomeViewModel().initDate(date)
+                cell.timeLable.text = HomeViewModel.shareHomeViewModel.initDate(date)
             }
             if let contentData = repliesArray[indexPath.row].content_rendered!.dataUsingEncoding(NSUTF32StringEncoding, allowLossyConversion: false) {
                 do {

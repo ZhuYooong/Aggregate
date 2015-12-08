@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import SwiftyJSON
-import CoreData
+
 class TopicDetailViewModel: NSObject {
-    var context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext //获取存储的上下文
     static let shareTopicDetailViewModel = TopicDetailViewModel()
     private override init() {}
     //MARK: - 网络请求

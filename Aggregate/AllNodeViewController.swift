@@ -39,7 +39,7 @@ class AllNodeViewController: UIViewController {
     func initData() {//初始化数据
         PKHUD.sharedHUD.contentView = PKHUDProgressView()
         PKHUD.sharedHUD.show()
-        AllNodeViewModel.shareAllNodeViewModel().findAllNode() {
+        AllNodeViewModel.shareAllNodeViewModel.findAllNode() {
             (contentArray: [Node]?) in
             self.creatNodeView(contentArray)
         }

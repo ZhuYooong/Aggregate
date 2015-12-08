@@ -11,13 +11,11 @@ import SwiftyJSON
 import CoreData
 class UserInfoViewModel: NSObject {
     var context = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext //获取存储的上下文
-    static let userInfoViewModel: UserInfoViewModel = UserInfoViewModel()
-    static func shareUserInfoViewModel() -> UserInfoViewModel {
-        return userInfoViewModel
-    }
+    static let shareUserInfoViewModel = UserInfoViewModel()
+    private override init() {}
     //MARK: - 网络请求
     func findmembers(id: String?, username: String?, initData: (content: User?)->Void) {//取用户信息
-        NetDataManager.shareNetDataManager().findmembers(id, username: username) { (data) -> Void in
+        NetDataManager.shareNetDataManager.findmembers(id, username: username) { (data) -> Void in
             if let data = data {
                 let json = JSON(data: data)
                     let subJson = json.dictionaryValue

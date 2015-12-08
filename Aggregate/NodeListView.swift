@@ -75,7 +75,7 @@ class NodeListView: UIView {
     }
     //MARK:- 节点点击事件
     func editMineNode() {//显示自己的节点
-        AllNodeViewModel.shareAllNodeViewModel().findMineNode() {
+        AllNodeViewModel.shareAllNodeViewModel.findMineNode() {
             (mineNodeContentArr) in
             for mineNode in mineNodeContentArr {
                 for view in self.subviews {
@@ -93,12 +93,12 @@ class NodeListView: UIView {
             sender.selected = !sender.selected
             if sender.selected == true {//插入
                 if let mineNode = tagArray?[sender.tag - 1000] {
-                    AllNodeViewModel.shareAllNodeViewModel().insertMineNode(mineNode)
+                    AllNodeViewModel.shareAllNodeViewModel.insertMineNode(mineNode)
                     sender.backgroundColor = UIColor.orangeColor()
                 }
             }else if sender.selected == false {//删除
                 if let id = tagArray?[sender.tag - 1000].id {
-                    AllNodeViewModel.shareAllNodeViewModel().removeMineNode(id)
+                    AllNodeViewModel.shareAllNodeViewModel.removeMineNode(id)
                     sender.backgroundColor = UIColor.whiteColor()
                 }
             }
@@ -107,7 +107,7 @@ class NodeListView: UIView {
             if let id = tagArray?[sender.tag - 1000].id {
                 PKHUD.sharedHUD.contentView = PKHUDProgressView()
                 PKHUD.sharedHUD.show()
-                HomeViewModel.shareHomeViewModel().findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
+                HomeViewModel.shareHomeViewModel.findNodeTopics(nil, nodeId: id, nodeName: nil, initData: {
                     (contentArray: [Topic]?) in
                     self.didselectItem!(nil, contentArray, sender.titleLabel?.text)
                 })
