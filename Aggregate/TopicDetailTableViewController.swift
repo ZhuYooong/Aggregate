@@ -8,7 +8,7 @@
 
 import UIKit
 import PKHUD
-
+import KFSwiftImageLoader
 class TopicDetailTableViewController: UITableViewController {
     @IBOutlet weak var headerTitleLable: UILabel!
     @IBOutlet weak var headerContentLable: UILabel!
@@ -77,9 +77,7 @@ class TopicDetailTableViewController: UITableViewController {
         }
         headerRepliesLable.text = content.replies
         if let imageURL = content.member_avatar_mini {
-            ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
-                self.headerMemberImageView.image = image
-            })
+            self.headerMemberImageView.loadImageFromURLString("https:\(imageURL)")
         }
         headerMemberNameLable.text = content.member_username
         headerView.bounds = CGRectMake(0, 0, UIScreen.mainScreen().bounds.size.width, 54 + headerContentHeight.constant + headerTitleHeight.constant)
@@ -112,9 +110,7 @@ extension TopicDetailTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TopicDetailCell", forIndexPath: indexPath) as! TopicDetailTableViewCell
         if repliesArray.count > indexPath.row {
             if let imageURL = repliesArray[indexPath.row].member_avatar_mini {
-                ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
-                    cell.memberImageView.image = image
-                })
+                cell.memberImageView.loadImageFromURLString("https:\(imageURL)")
             }
             if let id = Int(repliesArray[indexPath.row].member_id!) {
                 cell.tag = id

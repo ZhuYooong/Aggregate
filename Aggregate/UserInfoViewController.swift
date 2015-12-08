@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import KFSwiftImageLoader
 typealias backToLogInFunc = () -> Void
 class UserInfoViewController: UIViewController {
     @IBOutlet weak var userIconImageView: UIImageView!
@@ -66,9 +67,7 @@ class UserInfoViewController: UIViewController {
         self.userNameLable.text = mineInfo?.username
         self.userDescriptionLable.text = mineInfo?.bio
         if let imageURL = mineInfo?.avatar_normal {
-            ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
-                self.userIconImageView.image = image
-            })
+            self.userIconImageView.loadImageFromURLString("https:\(imageURL)")
         }
         HomeViewModel.shareHomeViewModel.findNodeTopics(self.userNameLable.text, nodeId: nil, nodeName: nil, initData: { (contentArray) -> Void in
             if let contentArray = contentArray {

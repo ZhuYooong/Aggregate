@@ -8,73 +8,71 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>DOHamburgerButton.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>HxColor.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
+		</dict>
+		<key>KFSwiftImageLoader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>PKHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
 		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2D3BC3AB0EC38D593CCAC363FEF216A8</key>
+		<key>048FED015A548348316AFFC42FE98E06</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>44231004C878E8F463B5AC72C1B59AEE</key>
+		<key>1FC466059198216FE79CA1D508CC926C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6054821938D48E823FF7F52870B2BA7D</key>
+		<key>427584FBC932542EDB88883348DEDFDA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>732929B74F738E897475B467AB8EC1BE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8C244105948B7F971D88E3105D22C35C</key>
+		<key>67C60E88B9C1EC0AD57A6525E13BC23F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B9A04D3C9B208813656510FDA8ADAE02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBC078B56CB22AC092C03785FD5BBFA8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F8BBB902CCFDF554EB90584D8EC0558C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

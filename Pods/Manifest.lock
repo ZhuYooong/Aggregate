@@ -1,22 +1,25 @@
 PODS:
-  - Alamofire (3.1.2)
+  - Alamofire (3.1.3)
   - DOHamburgerButton (0.0.1)
   - HxColor (2.0.0)
-  - PKHUD (2.2.4)
-  - SwiftyJSON (2.3.1)
+  - KFSwiftImageLoader (2.0.1)
+  - PKHUD (2.2.5)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Alamofire
   - DOHamburgerButton
   - HxColor
+  - KFSwiftImageLoader
   - PKHUD
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: 7c16ca65f3c7e681fd925fd7f2dec7747ff96855
+  Alamofire: 9f93b56389e48def9220dd57d1f44b1927229a5a
   DOHamburgerButton: 2afce23a99d7cb629bf65cd04c102fff962caab8
   HxColor: dbf82e4363eaef1314f683514e8bb2716a00554d
-  PKHUD: 4ec64535c98da203a3eb7303a58e13ac0bff1f8f
-  SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
+  KFSwiftImageLoader: a2b8a33a89116c767e7af8d2c109e8c483037b19
+  PKHUD: 15d9db01fb008bb9247c6d785c585f587955b113
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.38.2

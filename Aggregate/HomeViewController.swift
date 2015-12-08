@@ -10,6 +10,7 @@ import UIKit
 import DOHamburgerButton
 import PKHUD
 import WatchConnectivity
+import KFSwiftImageLoader
 
 class HomeViewController: UIViewController {
     var drawerAnimator: JVFloatingDrawerSpringAnimator?
@@ -254,9 +255,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             }
             cell.nodeLable.text = topicContentArray[indexPath.row].node_title
             if let imageURL = topicContentArray[indexPath.row].member_avatar_mini {
-                ImageLoader.sharedLoader.imageForUrl("https:\(imageURL)", completionHandler:{(image: UIImage?, url: String) in
-                    cell.userIconImageView.image = image
-                })
+                cell.userIconImageView.loadImageFromURLString("https:\(imageURL)")
             }
             if let nodeText = cell.nodeLable.text {
                 let option = NSStringDrawingOptions.UsesLineFragmentOrigin

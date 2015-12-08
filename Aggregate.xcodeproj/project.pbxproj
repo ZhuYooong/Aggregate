@@ -64,7 +64,6 @@
 		04923ED01BF9B64C00CEB7CB /* ShareSDKUI.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 04923EC21BF9B64C00CEB7CB /* ShareSDKUI.bundle */; };
 		04923ED11BF9B64C00CEB7CB /* ShareSDKUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04923EC31BF9B64C00CEB7CB /* ShareSDKUI.framework */; };
 		04923ED61BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04923ED51BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift */; };
-		04C91C4A1BDE1127002C758B /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C91C491BDE1126002C758B /* ImageLoader.swift */; };
 		04C91C511BDE1D50002C758B /* AllNodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C91C501BDE1D50002C758B /* AllNodeViewModel.swift */; };
 		04D4FB111C0EDF76007C0A70 /* TopicListInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4FB101C0EDF76007C0A70 /* TopicListInterfaceController.swift */; };
 		04D4FB131C0EDF8D007C0A70 /* TopicContentInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D4FB121C0EDF8D007C0A70 /* TopicContentInterfaceController.swift */; };
@@ -261,7 +260,6 @@
 		04923EC21BF9B64C00CEB7CB /* ShareSDKUI.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ShareSDKUI.bundle; sourceTree = "<group>"; };
 		04923EC31BF9B64C00CEB7CB /* ShareSDKUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDKUI.framework; sourceTree = "<group>"; };
 		04923ED51BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMenuCollectionViewController.swift; sourceTree = "<group>"; };
-		04C91C491BDE1126002C758B /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		04C91C501BDE1D50002C758B /* AllNodeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllNodeViewModel.swift; sourceTree = "<group>"; };
 		04D4FB101C0EDF76007C0A70 /* TopicListInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicListInterfaceController.swift; sourceTree = "<group>"; };
 		04D4FB121C0EDF8D007C0A70 /* TopicContentInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicContentInterfaceController.swift; sourceTree = "<group>"; };
@@ -710,7 +708,6 @@
 			isa = PBXGroup;
 			children = (
 				04923EA41BF9B64C00CEB7CB /* libraries */,
-				04C91C491BDE1126002C758B /* ImageLoader.swift */,
 				DE0EC3D31BC7678700F517AF /* JVFloatingDrawer */,
 				DE1573621BC66B1A000A88AA /* SMTabbedSplitViewController */,
 			);
@@ -1128,7 +1125,6 @@
 				DE0EC3DB1BC7678700F517AF /* JVFloatingDrawerSpringAnimator.m in Sources */,
 				04923ED61BF9D2E400CEB7CB /* AddMenuCollectionViewController.swift in Sources */,
 				046DA6C11BE31F2D0076DDB9 /* TopicDetailTableViewController.swift in Sources */,
-				04C91C4A1BDE1127002C758B /* ImageLoader.swift in Sources */,
 				04C91C511BDE1D50002C758B /* AllNodeViewModel.swift in Sources */,
 				DE0EC3E11BC78C6200F517AF /* MainDrawViewController.swift in Sources */,
 				048E8EF71BD8BECE006124FB /* NodeInfo.swift in Sources */,
@@ -1266,10 +1262,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "AggregateWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZY.Aggregate.watchkitapp.watchkitextension;
@@ -1288,10 +1281,7 @@
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CLANG_ENABLE_MODULES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "AggregateWatch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ZY.Aggregate.watchkitapp.watchkitextension;
