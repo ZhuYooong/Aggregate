@@ -7,11 +7,14 @@
 //
 
 import WatchKit
-typealias skipFunc = () -> Void
+
 class NodeListRowController: NSObject {
-    var goToTopicFunc = skipFunc?()
-    @IBOutlet var goToTopicButton: WKInterfaceButton!
-    @IBAction func goToTopic() {
-        goToTopicFunc!()
+    @IBOutlet var NodeTitleLable: WKInterfaceLabel!
+    var nodeContent: Node? {
+        didSet {
+            if let nodeContent = nodeContent {
+                NodeTitleLable.setText(nodeContent.title)
+            }
+        }
     }
 }

@@ -43,18 +43,10 @@ class InterfaceController: WKInterfaceController {
         reloadData()
     }
     func reloadData() {//刷新列表
-        //清空列表
-        let range = NSMakeRange(0, mineNodeArray.count)
-        let set = NSIndexSet(indexesInRange: range)
-        NodeListTable.removeRowsAtIndexes(set)
-        //给列表重新赋值
+        NodeListTable.setNumberOfRows(mineNodeArray.count, withRowType: "NodeList")
         for i in 0 ..< mineNodeArray.count {
-            NodeListTable.insertRowsAtIndexes(NSIndexSet(index: i), withRowType: "NodeList")
-            let nodeListRowController = NodeListTable.rowControllerAtIndex(i) as? NodeListRowController
-            nodeListRowController?.goToTopicButton.setTitle(mineNodeArray[i].title)
-            nodeListRowController?.goToTopicFunc = {
-                let nodeModels = NSArray(objects: self.mineNodeArray[i].self.id!, self.mineNodeArray[i].title!)
-                self.pushControllerWithName("TopicList", context: nodeModels)
+            if let nodeListRowController = NodeListTable.rowControllerAtIndex(i) as? NodeListRowController {
+                nodeListRowController.nodeContent = mineNodeArray[i]
             }
         }
     }
@@ -65,6 +57,9 @@ class InterfaceController: WKInterfaceController {
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+        self.pushControllerWithName("TopicList", context: [self.mineNodeArray[rowIndex].self.id!, self.mineNodeArray[rowIndex].title!])
     }
 }
 extension InterfaceController: WCSessionDelegate {

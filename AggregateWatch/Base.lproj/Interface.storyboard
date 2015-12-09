@@ -15,15 +15,11 @@
                                 <tableRow identifier="NodeList" id="s1s-rj-SVz" customClass="NodeListRowController" customModule="AggregateWatch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="GjJ-hh-oeU">
                                         <items>
-                                            <button width="136" alignment="left" title="Button" id="oNn-Ex-a9o">
-                                                <connections>
-                                                    <action selector="goToTopic" destination="s1s-rj-SVz" id="ptf-6p-Qlb"/>
-                                                </connections>
-                                            </button>
+                                            <label width="1" alignment="left" text="Label" numberOfLines="0" id="EO4-tj-bEX"/>
                                         </items>
                                     </group>
                                     <connections>
-                                        <outlet property="goToTopicButton" destination="oNn-Ex-a9o" id="kM6-yL-UOA"/>
+                                        <outlet property="NodeTitleLable" destination="EO4-tj-bEX" id="98p-i6-mFO"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -46,16 +42,11 @@
                                 <tableRow identifier="TopicList" id="YhT-0U-w1A" customClass="TopicListRowController" customModule="AggregateWatch_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" id="E3m-6e-uAv">
                                         <items>
-                                            <button width="1" alignment="left" title="Button" id="Nh5-Gb-Kab">
-                                                <fontDescription key="font" type="system" pointSize="15"/>
-                                                <connections>
-                                                    <action selector="goToContrnt" destination="YhT-0U-w1A" id="tbs-mq-Pw2"/>
-                                                </connections>
-                                            </button>
+                                            <label width="1" alignment="left" text="Label" numberOfLines="0" id="Dnb-0m-OzI"/>
                                         </items>
                                     </group>
                                     <connections>
-                                        <outlet property="goToContentButton" destination="Nh5-Gb-Kab" id="uUW-PM-SWF"/>
+                                        <outlet property="topicTitleLable" destination="Dnb-0m-OzI" id="Uci-If-zx7"/>
                                     </connections>
                                 </tableRow>
                             </items>

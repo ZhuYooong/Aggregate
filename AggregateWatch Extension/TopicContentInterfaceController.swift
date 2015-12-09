@@ -33,22 +33,17 @@ class TopicContentInterfaceController: WKInterfaceController {
         }
     }
     func reloadData(topicContent: Topic, contentArray: [Replies]) {//刷新列表
-        //清空列表
-        let range = NSMakeRange(0, contentArray.count + 1)
-        let set = NSIndexSet(indexesInRange: range)
-        ContentListTable.removeRowsAtIndexes(set)
-        //给列表重新赋值
+        ContentListTable.setNumberOfRows(contentArray.count + 1, withRowType: "TopicContent")
         for i in 0 ..< contentArray.count + 1 {
-            initItem(i, topicContent: topicContent, contentArray: contentArray)
+            initItem(i, topicContent: topicContent, repliesContent: contentArray)
         }
     }
-    func initItem(index: Int, topicContent: Topic, contentArray: [Replies]) {
-        ContentListTable.insertRowsAtIndexes(NSIndexSet(index: index), withRowType: "TopicContent")
+    func initItem(index: Int, topicContent: Topic, repliesContent: [Replies]) {
         let topicContentRowController = ContentListTable.rowControllerAtIndex(index) as? TopicContentRowController
         if index == 0 {
             topicContentRowController?.topicContentLable.setText(topicContent.content)
         }else {
-            topicContentRowController?.topicContentLable.setText(contentArray[index - 1].content)
+            topicContentRowController?.topicContentLable.setText(repliesContent[index - 1].content)
         }
     }
     override func willActivate() {

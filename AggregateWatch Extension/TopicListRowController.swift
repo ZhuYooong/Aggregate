@@ -9,9 +9,12 @@
 import WatchKit
 
 class TopicListRowController: NSObject {
-    var goToContrntFunc = skipFunc?()
-    @IBOutlet var goToContentButton: WKInterfaceButton!
-    @IBAction func goToContrnt() {
-        goToContrntFunc!()
+    @IBOutlet var topicTitleLable: WKInterfaceLabel!
+    var topicContent: Topic? {
+        didSet {
+            if let topicContent = topicContent {
+                topicTitleLable.setText(topicContent.title)
+            }
+        }
     }
 }

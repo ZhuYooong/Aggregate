@@ -48,19 +48,10 @@ class TopicListInterfaceController: WKInterfaceController {
         reloadData()
     }
     func reloadData() {//刷新列表
-        //清空列表
-        let range = NSMakeRange(0, topicListArray.count)
-        let set = NSIndexSet(indexesInRange: range)
-        TopicListTable.removeRowsAtIndexes(set)
-        //给列表重新赋值
+        TopicListTable.setNumberOfRows(topicListArray.count, withRowType: "TopicList")
         for i in 0 ..< topicListArray.count {
-            TopicListTable.insertRowsAtIndexes(NSIndexSet(index: i), withRowType: "TopicList")
             let topicListRowController = TopicListTable.rowControllerAtIndex(i) as? TopicListRowController
-            topicListRowController?.goToContentButton.setTitle(topicListArray[i].title)
-            topicListRowController?.goToContrntFunc = {
-                let nodeModels = NSArray(objects: self.topicListArray[i])
-                self.pushControllerWithName("TopicContent", context: nodeModels)
-            }
+            topicListRowController?.topicContent = topicListArray[i]
         }
     }
     override func willActivate() {
@@ -72,5 +63,7 @@ class TopicListInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
-
+    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+        self.pushControllerWithName("TopicContent", context: [self.topicListArray[rowIndex]])
+    }
 }
