@@ -3,7 +3,8 @@
 //  PKHUD
 //
 //  Created by Philip Kluz on 6/16/14.
-//  Copyright (c) 2014 NSExceptional. All rights reserved.
+//  Copyright (c) 2016 NSExceptional. All rights reserved.
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -26,7 +27,7 @@ internal class Window: UIWindow {
     
     private func commonInit() {
         rootViewController = WindowRootViewController()
-        windowLevel = UIWindowLevelNormal + 1.0
+        windowLevel = UIWindowLevelNormal + 500.0
         backgroundColor = UIColor.clearColor()
         
         addSubview(backgroundView)
@@ -50,14 +51,13 @@ internal class Window: UIWindow {
     
     private var willHide = false
     
-    internal func hideFrameView(animated anim: Bool) {
-        let completion: (finished: Bool) -> (Void) = { finished in
-            if finished {
-                self.hidden = true
-                self.resignKeyWindow()
-            }
-            
+    internal func hideFrameView(animated anim: Bool, completion: ((Bool) -> Void)? = nil) {
+        let finalize: (finished: Bool) -> (Void) = { finished in
+            self.hidden = true
+            self.resignKeyWindow()
             self.willHide = false
+            
+            completion?(finished)
         }
         
         if hidden {
@@ -67,17 +67,21 @@ internal class Window: UIWindow {
         willHide = true
         
         if anim {
-            UIView.animateWithDuration(0.8, animations: { self.frameView.alpha = 0.0 }, completion: completion)
+            UIView.animateWithDuration(0.8, animations: {
+                self.frameView.alpha = 0.0
+                self.hideBackground(animated: false)
+            }, completion: { bool in finalize(finished: true) } )
         } else {
-            completion(finished: true)
+            self.frameView.alpha = 0.0
+            finalize(finished: true)
         }
     }
     
     private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(white:0.0, alpha:0.25)
-        view.alpha = 0.0;
-        return view;
+        view.alpha = 0.0
+        return view
     }()
     
     internal func showBackground(animated anim: Bool) {
@@ -86,7 +90,7 @@ internal class Window: UIWindow {
                 self.backgroundView.alpha = 1.0
             }
         } else {
-            backgroundView.alpha = 1.0;
+            backgroundView.alpha = 1.0
         }
     }
     
@@ -96,7 +100,7 @@ internal class Window: UIWindow {
                 self.backgroundView.alpha = 0.0
             }
         } else {
-            backgroundView.alpha = 0.0;
+            backgroundView.alpha = 0.0
         }
     }
 }

@@ -3,7 +3,8 @@
 //  PKHUD
 //
 //  Created by Philip Kluz on 6/18/14.
-//  Copyright (c) 2014 NSExceptional. All rights reserved.
+//  Copyright (c) 2016 NSExceptional. All rights reserved.
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -20,19 +21,11 @@ internal class WindowRootViewController: UIViewController {
     }
     
     internal override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        if let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController {
-            return rootViewController.preferredStatusBarStyle()
-        } else {
-            return .Default
-        }
+        return self.presentingViewController?.preferredStatusBarStyle() ?? UIApplication.sharedApplication().statusBarStyle
     }
     
     internal override func prefersStatusBarHidden() -> Bool {
-        if let rootViewController = UIApplication.sharedApplication().delegate?.window??.rootViewController {
-            return rootViewController.prefersStatusBarHidden()
-        } else {
-            return false
-        }
+        return self.presentingViewController?.prefersStatusBarHidden() ?? UIApplication.sharedApplication().statusBarHidden
     }
     
     internal override func preferredStatusBarUpdateAnimation() -> UIStatusBarAnimation {

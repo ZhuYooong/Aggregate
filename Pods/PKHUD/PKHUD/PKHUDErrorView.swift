@@ -3,7 +3,8 @@
 //  PKHUD
 //
 //  Created by Philip Kluz on 9/27/15.
-//  Copyright (c) 2015 NSExceptional. All rights reserved.
+//  Copyright (c) 2016 NSExceptional. All rights reserved.
+//  Licensed under the MIT license.
 //
 
 import UIKit
@@ -28,20 +29,19 @@ public class PKHUDErrorView: PKHUDSquareBaseView, PKHUDAnimating {
         dash.fillColor   = nil
         dash.strokeColor = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1.0).CGColor
         dash.lineWidth   = 6
-        dash.fillMode = kCAFillModeForwards;
+        dash.fillMode    = kCAFillModeForwards
         return dash
     }
-
-    public override init() {
-        super.init()
+    
+    public init(title: String? = nil, subtitle: String? = nil) {
+        super.init(title: title, subtitle: subtitle)
         layer.addSublayer(dashOneLayer)
         layer.addSublayer(dashTwoLayer)
         dashOneLayer.position = layer.position
         dashTwoLayer.position = layer.position
     }
-    
-    public required init?(coder aDecoder: NSCoder)
-    {
+
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         layer.addSublayer(dashOneLayer)
         layer.addSublayer(dashTwoLayer)
@@ -50,14 +50,13 @@ public class PKHUDErrorView: PKHUDSquareBaseView, PKHUDAnimating {
     }
     
     func rotationAnimation(angle: CGFloat) -> CABasicAnimation {
-        
-        var animation : CABasicAnimation;
+        var animation : CABasicAnimation
         if #available(iOS 9.0, *) {
             let springAnimation = CASpringAnimation(keyPath:"transform.rotation.z")
             springAnimation.damping = 1.5
             springAnimation.mass = 0.22
             springAnimation.initialVelocity = 0.5
-            animation = springAnimation;
+            animation = springAnimation
         } else {
             animation = CABasicAnimation(keyPath:"transform.rotation.z")
         }
