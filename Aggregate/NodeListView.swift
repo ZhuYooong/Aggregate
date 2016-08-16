@@ -36,7 +36,7 @@ class NodeListView: UIView {
                 tagBtn.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
                 tagBtn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Selected)
                 tagBtn.titleLabel?.font = UIFont.boldSystemFontOfSize(15)
-                tagBtn.addTarget(self, action: "tagBtnClick:", forControlEvents: UIControlEvents.TouchUpInside)
+                tagBtn.addTarget(self, action: #selector(NodeListView.tagBtnClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
                 tagBtn.setTitle(value.title, forState: UIControlState.Normal)
                 tagBtn.tag = 1000 + index
                 tagBtn.layer.cornerRadius = 13

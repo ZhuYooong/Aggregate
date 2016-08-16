@@ -12,7 +12,7 @@ class MainDrawViewController: JVFloatingDrawerViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "changeBackgroundColor:", name: "selectedColor", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainDrawViewController.changeBackgroundColor(_:)), name: "selectedColor", object: nil)
     }
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)

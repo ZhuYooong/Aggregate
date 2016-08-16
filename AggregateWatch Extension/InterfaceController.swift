@@ -25,7 +25,7 @@ class InterfaceController: WKInterfaceController {
     func initData() {
         dispatch_once(&InterfaceController.token) { () -> Void in
             self.becomeActive()
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "becomeActive", name: applicationDidBecomeActiveNotification, object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(InterfaceController.becomeActive), name: applicationDidBecomeActiveNotification, object: nil)
             if WCSession.isSupported() {
                 InterfaceController.session = WCSession.defaultSession()
                 InterfaceController.session!.delegate = self

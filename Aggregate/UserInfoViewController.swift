@@ -29,7 +29,7 @@ class UserInfoViewController: UIViewController {
         mineTopicTableView.tableFooterView = UIView()
         if let userName = userName where userName.characters.count > 0 {//特殊情况
             let crossBtn = UIButton(frame: CGRectMake(0,0,30,30))
-            crossBtn.addTarget(self, action: "crossButtonClick:", forControlEvents: UIControlEvents.TouchUpInside)
+            crossBtn.addTarget(self, action: #selector(UserInfoViewController.crossButtonClick(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             crossBtn.setImage(UIImage(named: "right_icon_services"), forState: UIControlState.Normal)
             navigationItem.rightBarButtonItem = UIBarButtonItem(customView: crossBtn)
         }

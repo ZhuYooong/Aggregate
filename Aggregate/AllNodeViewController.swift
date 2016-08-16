@@ -24,7 +24,7 @@ class AllNodeViewController: UIViewController {
         initData()
     }
     func initItem() {//初始化控件
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "编辑", style: UIBarButtonItemStyle.Done, target: self, action: "compileButtonClick:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "编辑", style: UIBarButtonItemStyle.Done, target: self, action: #selector(AllNodeViewController.compileButtonClick(_:)))
     }
     func compileButtonClick(sender: UIBarButtonItem) {
         if sender.title == "编辑" {

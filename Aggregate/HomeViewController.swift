@@ -95,7 +95,7 @@ class HomeViewController: UIViewController {
         drawerAnimator?.initialSpringVelocity = 1
     }
     func toMenuViewController() {
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: "handleSwipeGesture:")
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(HomeViewController.handleSwipeGesture(_:)))
         swipeGesture.direction = UISwipeGestureRecognizerDirection.Right
         view.addGestureRecognizer(swipeGesture)
     }
@@ -159,7 +159,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             hamburgerBtn.frame = CGRectMake(0, -2, 60, 40)
             hamburgerBtn.color = UIColor.redColor()
             hamburgerBtn.titleLabel?.font = UIFont.systemFontOfSize(12)
-            hamburgerBtn.addTarget(self, action: "showOrHideNode:", forControlEvents: UIControlEvents.TouchUpInside)
+            hamburgerBtn.addTarget(self, action: #selector(HomeViewController.showOrHideNode(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             cell.contentView.addSubview(hamburgerBtn)
         }else if indexPath.row == nodeListNumber - 1 {
             let moreLable = UILabel(frame: CGRectMake(0, 0, 60, 40))
@@ -175,7 +175,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 nodeLable.font = UIFont.systemFontOfSize(12)
                 nodeLable.text = mineNodeArray[currentNum].title
                 cell.contentView.addSubview(nodeLable)
-                currentNum++
+                currentNum += 1
             }
         }
         return cell
